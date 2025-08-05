@@ -9,6 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@picocss/pico": "^2.1.1",
     "astro": "^5.12.8"
+  },
+  "devDependencies": {
+    "sass": "^1.89.2"
   }
 }
