@@ -1,0 +1,5 @@
+patchedDependencies:
+  '@picocss/picocss.com@0.0.1': patches/@picocss__picocss.com@0.0.1.patch
+
+overrides:
+  prismjs@<1.30.0: '>=1.30.0'

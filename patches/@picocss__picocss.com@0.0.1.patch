@@ -1,0 +1,680 @@
+diff --git a/app/styles/scss/commons/components/_card-component.scss b/app/styles/scss/commons/components/_card-component.scss
+index baf2c47574a22c2b0713b245807c89d2c11d2878..c0bf9ca44bbd871b1d9b7fb8ca13007401bb36f5 100644
+--- a/app/styles/scss/commons/components/_card-component.scss
++++ b/app/styles/scss/commons/components/_card-component.scss
+@@ -1,5 +1,5 @@
+-@use "colors" as *;
+-@use "settings" as *;
++@use "@picocss/pico/scss/colors" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Card component
+diff --git a/app/styles/scss/commons/components/_chapter.scss b/app/styles/scss/commons/components/_chapter.scss
+index 859bc6a25e00136660cb280efb192992d45bf2df..7466251821c33cde061585c156f16f14318a504c 100644
+--- a/app/styles/scss/commons/components/_chapter.scss
++++ b/app/styles/scss/commons/components/_chapter.scss
+@@ -1,4 +1,4 @@
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ .chapter {
+   color: var(#{$css-var-prefix}chapter-color);
+diff --git a/app/styles/scss/commons/components/_logo.scss b/app/styles/scss/commons/components/_logo.scss
+index 11312f21dc8b3c0aa75624b5909850cca7bdd0b5..f9f3dc0d5ee8dc50b49ff5e8cf89b991344108e1 100644
+--- a/app/styles/scss/commons/components/_logo.scss
++++ b/app/styles/scss/commons/components/_logo.scss
+@@ -1,4 +1,4 @@
+-@use "colors" as *;
++@use "@picocss/pico/scss/colors" as *;
+ 
+ /**
+  * Logo
+diff --git a/app/styles/scss/commons/components/_skip-to-content.scss b/app/styles/scss/commons/components/_skip-to-content.scss
+index d6c0b259ff460fd53012918a162477cbbdf63ce8..bb433c0c5593d5aa0dcff49e5b161eb466e02f9c 100644
+--- a/app/styles/scss/commons/components/_skip-to-content.scss
++++ b/app/styles/scss/commons/components/_skip-to-content.scss
+@@ -1,4 +1,4 @@
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ .skip-to-content {
+   z-index: 999;
+diff --git a/app/styles/scss/commons/content/_code.scss b/app/styles/scss/commons/content/_code.scss
+index ba4094b762251e8f8f8a79b25cd9c23cf3f82bd3..11b088df9c3474857777068775f50af32df3fd1d 100644
+--- a/app/styles/scss/commons/content/_code.scss
++++ b/app/styles/scss/commons/content/_code.scss
+@@ -1,6 +1,6 @@
+ @use "sass:map";
+-@use "colors" as *;
+-@use "settings" as *;
++@use "@picocss/pico/scss/colors" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Code
+diff --git a/app/styles/scss/commons/layout/_footer.scss b/app/styles/scss/commons/layout/_footer.scss
+index 3bf360d09c137d61ccd5ebf7c2e67d0048d26bd0..e2c2246361e39cac74b827dd94ef68ea3bf5d6fd 100644
+--- a/app/styles/scss/commons/layout/_footer.scss
++++ b/app/styles/scss/commons/layout/_footer.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Footer
+diff --git a/app/styles/scss/commons/layout/_header.scss b/app/styles/scss/commons/layout/_header.scss
+index 8b4f4e06816cb8b29c03bc15d15e1ebd9e4d271a..345b2b081eb038739104f1de6a81034eba6b5f54 100644
+--- a/app/styles/scss/commons/layout/_header.scss
++++ b/app/styles/scss/commons/layout/_header.scss
+@@ -1,6 +1,6 @@
+ @use "sass:map";
+-@use "colors" as *;
+-@use "settings" as *;
++@use "@picocss/pico/scss/colors" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Header
+diff --git a/app/styles/scss/commons/theme/_default.scss b/app/styles/scss/commons/theme/_default.scss
+index e0a8d74808db8f507c2363092360689020e8aad8..4f89b913a67f41eef6630f458990b2d922273d79 100644
+--- a/app/styles/scss/commons/theme/_default.scss
++++ b/app/styles/scss/commons/theme/_default.scss
+@@ -3,8 +3,8 @@
+ @use "default/dark";
+ 
+ // Fonts
+-@use "../../../../../node_modules/@fontsource/fira-code/scss/mixins" as FiraCode;
+-@use "../../../../../node_modules/@fontsource/figtree/scss/mixins" as FigTree;
++@use "/node_modules/@fontsource/fira-code/scss/mixins" as FiraCode;
++@use "/node_modules/@fontsource/figtree/scss/mixins" as FigTree;
+ 
+ // Styles
+ @use "default/styles";
+@@ -43,11 +43,11 @@
+ @include FiraCode.faces(
+   $weights: 400,
+   $styles: all,
+-  $directory: "../../../node_modules/@fontsource/fira-code/files"
++  $directory: "/node_modules/@fontsource/fira-code/files"
+ );
+ 
+ @include FigTree.faces(
+   $weights: 700,
+   $styles: all,
+-  $directory: "../../../node_modules/@fontsource/figtree/files"
++  $directory: "/node_modules/@fontsource/figtree/files"
+ );
+diff --git a/app/styles/scss/commons/theme/default/_dark.scss b/app/styles/scss/commons/theme/default/_dark.scss
+index 055e145626de8cd88a0a9c07402a78b782498063..7d320079ec5060cddaf7a399edc9e0f6283ea7a0 100644
+--- a/app/styles/scss/commons/theme/default/_dark.scss
++++ b/app/styles/scss/commons/theme/default/_dark.scss
+@@ -1,5 +1,5 @@
+-@use "colors" as *;
+-@use "settings" as *;
++@use "@picocss/pico/scss/colors" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ @mixin theme {
+   // Header
+diff --git a/app/styles/scss/commons/theme/default/_light.scss b/app/styles/scss/commons/theme/default/_light.scss
+index 338cfb690f04d081ec9644bc39ab7901bba35003..3e3e301ba2e48469e2acf5e29e42c791d8335e56 100644
+--- a/app/styles/scss/commons/theme/default/_light.scss
++++ b/app/styles/scss/commons/theme/default/_light.scss
+@@ -1,5 +1,5 @@
+-@use "colors" as *;
+-@use "settings" as *;
++@use "@picocss/pico/scss/colors" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ @mixin theme {
+   // Header
+diff --git a/app/styles/scss/commons/theme/default/_styles.scss b/app/styles/scss/commons/theme/default/_styles.scss
+index f7160bc4f7b253ccf4aad8cf0eb9ceff7cd76a4c..520ce62d1ef6a1686fe777175df65b3bb8ca9fe5 100644
+--- a/app/styles/scss/commons/theme/default/_styles.scss
++++ b/app/styles/scss/commons/theme/default/_styles.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ // Override responsive spacing for landmarks and sections on xxl
+ @media (min-width: map.get(map.get($breakpoints, "xxl"), "breakpoint")) {
+diff --git a/app/styles/scss/docs/color-picker.scss b/app/styles/scss/docs/color-picker.scss
+index 37dfeca45a4624a517c616f039643aae9afbdd1d..0a76467c6b9cc4e5d1df724f4501f7e3c5b66491 100644
+--- a/app/styles/scss/docs/color-picker.scss
++++ b/app/styles/scss/docs/color-picker.scss
+@@ -1,5 +1,5 @@
+ // Utilities
+-@use "colors/utilities" with (
++@use "@picocss/pico/scss/colors/utilities" with (
+   $palette: (
+     "enable-shades": false,
+   ),
+diff --git a/app/styles/scss/docs/color-utilities.scss b/app/styles/scss/docs/color-utilities.scss
+index bd353a079817a15723f6dbdf94b6871f67137e78..dd8cd8155904d56497fcea73370e4b50d83c0f12 100644
+--- a/app/styles/scss/docs/color-utilities.scss
++++ b/app/styles/scss/docs/color-utilities.scss
+@@ -1,2 +1,2 @@
+ // Utilities
+-@use "colors/utilities";
++@use "@picocss/pico/scss/colors/utilities";
+diff --git a/app/styles/scss/docs/components/_card-color-picker.scss b/app/styles/scss/docs/components/_card-color-picker.scss
+index 11bc866214429a2e8dd3697090b6c01e01139418..7398296ca9fb7b48c759ca12254a6245e61f3789 100644
+--- a/app/styles/scss/docs/components/_card-color-picker.scss
++++ b/app/styles/scss/docs/components/_card-color-picker.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ article {
+   &.color-picker {
+diff --git a/app/styles/scss/docs/components/_color-families.scss b/app/styles/scss/docs/components/_color-families.scss
+index 6c3940bb624ab50a61642066981e5a638d6c9bd0..1a429462cb31534a56b749262aa54ef5c06b4047 100644
+--- a/app/styles/scss/docs/components/_color-families.scss
++++ b/app/styles/scss/docs/components/_color-families.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ .color-families {
+   grid-column-gap: 2rem;
+diff --git a/app/styles/scss/docs/components/_dialog-color.scss b/app/styles/scss/docs/components/_dialog-color.scss
+index f0c43a0edad4906d344aff43e5e951c83c9980ce..9d1368a3ab88d6f5b560e40bab507d6bfe70ece5 100644
+--- a/app/styles/scss/docs/components/_dialog-color.scss
++++ b/app/styles/scss/docs/components/_dialog-color.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ dialog.color {
+   #{$css-var-prefix}font-size: 0.875rem;
+diff --git a/app/styles/scss/docs/components/_dialog-example.scss b/app/styles/scss/docs/components/_dialog-example.scss
+index a6eb3177498242d69a5f7cc3f1b6f6112b806487..b3a566e1b47d78b80b7b7dbd7bebc6d8c1da8fe4 100644
+--- a/app/styles/scss/docs/components/_dialog-example.scss
++++ b/app/styles/scss/docs/components/_dialog-example.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ dialog {
+   &.example {
+diff --git a/app/styles/scss/docs/components/_docs-nav.scss b/app/styles/scss/docs/components/_docs-nav.scss
+index be3dcfbe6541b3a21aaadc004a55af018a843502..3c9d5364e540714c0aea81d0f283c76b553edee6 100644
+--- a/app/styles/scss/docs/components/_docs-nav.scss
++++ b/app/styles/scss/docs/components/_docs-nav.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ main > aside > nav {
+   details {
+diff --git a/app/styles/scss/docs/components/_heading-with-anchor.scss b/app/styles/scss/docs/components/_heading-with-anchor.scss
+index ad4af0167b7b6e491ce8b46f5b880e5e207af84a..09c45f015cd9d8d9c6a3eb99610413503a82d103 100644
+--- a/app/styles/scss/docs/components/_heading-with-anchor.scss
++++ b/app/styles/scss/docs/components/_heading-with-anchor.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ :is(h1, h2, h3, h4, h5, h6) {
+   position: relative;
+diff --git a/app/styles/scss/docs/components/_img-rounded-bordered.scss b/app/styles/scss/docs/components/_img-rounded-bordered.scss
+index bd8667514bd95ea967d1ebdedd616e618a3caabf..803b2b76a2613df9d992977fcfe1ef9afe24b8e1 100644
+--- a/app/styles/scss/docs/components/_img-rounded-bordered.scss
++++ b/app/styles/scss/docs/components/_img-rounded-bordered.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ img.rounded-bordered {
+   border: 1px solid var(#{$css-var-prefix}muted-border-color);
+diff --git a/app/styles/scss/docs/layout/_main-aside.scss b/app/styles/scss/docs/layout/_main-aside.scss
+index 457fa3df567b870cc989141ccfaae006e68d527f..7a761a91dac14e85b7f90156e24a3378ad1bb082 100644
+--- a/app/styles/scss/docs/layout/_main-aside.scss
++++ b/app/styles/scss/docs/layout/_main-aside.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Docs: Aside
+diff --git a/app/styles/scss/docs/layout/_main-breadcrumb.scss b/app/styles/scss/docs/layout/_main-breadcrumb.scss
+index 01df3969cf91d09bbedd0714fbad6fca235e6940..7c63fb429ad05a3db02b5dae45184d14eb97f435 100644
+--- a/app/styles/scss/docs/layout/_main-breadcrumb.scss
++++ b/app/styles/scss/docs/layout/_main-breadcrumb.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Docs: Breadcrumb
+diff --git a/app/styles/scss/docs/layout/_main-document.scss b/app/styles/scss/docs/layout/_main-document.scss
+index d28f0cdb5b09fd7006ecec005d2105ab21fa7a5b..1450ab17c5a5f405c98a3022be24ddb9ea68a09a 100644
+--- a/app/styles/scss/docs/layout/_main-document.scss
++++ b/app/styles/scss/docs/layout/_main-document.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Docs: Document
+diff --git a/app/styles/scss/docs/layout/_main-documentation-menu.scss b/app/styles/scss/docs/layout/_main-documentation-menu.scss
+index 055ea3caee95cf88e2bc724dd027e3b1d085ec77..091a22f70658d6a65cf9d3b8c029efaadb388d0a 100644
+--- a/app/styles/scss/docs/layout/_main-documentation-menu.scss
++++ b/app/styles/scss/docs/layout/_main-documentation-menu.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Docs: Documentation Menu
+diff --git a/app/styles/scss/docs/layout/_main-header.scss b/app/styles/scss/docs/layout/_main-header.scss
+index 941331e645d52cd485d789908a776301c08538bd..746bf6a707ef4e528668f8d050ee11b83d68edd1 100644
+--- a/app/styles/scss/docs/layout/_main-header.scss
++++ b/app/styles/scss/docs/layout/_main-header.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Docs: Header
+diff --git a/app/styles/scss/docs/layout/_main-table-of-contents.scss b/app/styles/scss/docs/layout/_main-table-of-contents.scss
+index a2849010cb5b86b3399b86b823aa9c6918c77d54..f8e15c6a8de167db246ee79a99c45df23fba3a01 100644
+--- a/app/styles/scss/docs/layout/_main-table-of-contents.scss
++++ b/app/styles/scss/docs/layout/_main-table-of-contents.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Docs: Table of Contents
+diff --git a/app/styles/scss/docs/layout/_main.scss b/app/styles/scss/docs/layout/_main.scss
+index 92f3f305778ed30be199e8e141f70b27eba89972..84dd7e02797d125c67caef344bbfb6a7ecfe3826 100644
+--- a/app/styles/scss/docs/layout/_main.scss
++++ b/app/styles/scss/docs/layout/_main.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Docs: Main
+diff --git a/app/styles/scss/docs/pages/_brand.scss b/app/styles/scss/docs/pages/_brand.scss
+index ef9d25f49927ac9c5c84804e1a07905870697719..8e9bba6e8394463fc80d22cf3f956f3abafd8a29 100644
+--- a/app/styles/scss/docs/pages/_brand.scss
++++ b/app/styles/scss/docs/pages/_brand.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Brand
+diff --git a/app/styles/scss/docs/pages/_card.scss b/app/styles/scss/docs/pages/_card.scss
+index c80688b6abfdcf784a08698c6e9944e5c3ef7067..e67883bd35196e078272a2ddb80d4c9ee8e1de25 100644
+--- a/app/styles/scss/docs/pages/_card.scss
++++ b/app/styles/scss/docs/pages/_card.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Card
+diff --git a/app/styles/scss/docs/pages/_color-schemes.scss b/app/styles/scss/docs/pages/_color-schemes.scss
+index 4b991de39a521b688e5b110bef828ded49d88568..b7e39f4496e2eae15b06b52d91d04607c74b2e3c 100644
+--- a/app/styles/scss/docs/pages/_color-schemes.scss
++++ b/app/styles/scss/docs/pages/_color-schemes.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Color schemes
+diff --git a/app/styles/scss/docs/pages/_grid.scss b/app/styles/scss/docs/pages/_grid.scss
+index ca5faccf5724429a4008baf837dcda3cadb7a7a5..ffa6c5f635a9fd9f0bc73466aeae8c050ad90468 100644
+--- a/app/styles/scss/docs/pages/_grid.scss
++++ b/app/styles/scss/docs/pages/_grid.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Grid
+diff --git a/app/styles/scss/docs/pages/_loading.scss b/app/styles/scss/docs/pages/_loading.scss
+index 905e2420717a5edfa6c4b5c11c46d7c9f194be35..0d70cd2e951a0bb5aaa15a954f7ff26094ccc279 100644
+--- a/app/styles/scss/docs/pages/_loading.scss
++++ b/app/styles/scss/docs/pages/_loading.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Loading
+diff --git a/app/styles/scss/docs/pages/_mission.scss b/app/styles/scss/docs/pages/_mission.scss
+index 36920c3baa49620858e4ec5f73c4dc799fabdfca..1acfb5dbd75b29e55b893cef911749748f84329e 100644
+--- a/app/styles/scss/docs/pages/_mission.scss
++++ b/app/styles/scss/docs/pages/_mission.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Mission
+diff --git a/app/styles/scss/docs/pages/_modal.scss b/app/styles/scss/docs/pages/_modal.scss
+index 4346de07863b01958bc64a6bbe3d2a1fa311c20b..e117340810e29c4326777d2e53b82555f0dc5ff0 100644
+--- a/app/styles/scss/docs/pages/_modal.scss
++++ b/app/styles/scss/docs/pages/_modal.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Modal
+diff --git a/app/styles/scss/docs/pages/_nav.scss b/app/styles/scss/docs/pages/_nav.scss
+index 2989f17e26ca68bb9d331c9d24236053348fedbd..69260da636e06daff8469ab5bd1c630d84b9115a 100644
+--- a/app/styles/scss/docs/pages/_nav.scss
++++ b/app/styles/scss/docs/pages/_nav.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Nav
+diff --git a/app/styles/scss/docs/pages/_typography.scss b/app/styles/scss/docs/pages/_typography.scss
+index 6817cc3366180bc3f24705a4ab26ea777e5ec164..1f5661a92251e9aa16a1b8479005bdf54cd74698 100644
+--- a/app/styles/scss/docs/pages/_typography.scss
++++ b/app/styles/scss/docs/pages/_typography.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Typography
+diff --git a/app/styles/scss/docs/pages/_usage-scenarios.scss b/app/styles/scss/docs/pages/_usage-scenarios.scss
+index 4909a26017ce737f7d6c8b6d00398e9f15d47589..79fc857ff04e2976eda89315a66c591827e2b854 100644
+--- a/app/styles/scss/docs/pages/_usage-scenarios.scss
++++ b/app/styles/scss/docs/pages/_usage-scenarios.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Usage scenarios
+diff --git a/app/styles/scss/docs/pages/_v2.scss b/app/styles/scss/docs/pages/_v2.scss
+index 7b7d853474c0b338f449454104ce68b1f2e60b18..3a408bfaf680b086ecbf248cba0e9bd21967b73c 100644
+--- a/app/styles/scss/docs/pages/_v2.scss
++++ b/app/styles/scss/docs/pages/_v2.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: v2
+diff --git a/app/styles/scss/docs/pages/_version-picker.scss b/app/styles/scss/docs/pages/_version-picker.scss
+index 8f3788611169262caeb75c54a366192e6a1cebcd..9e21c5ecc6c82ddd429dd07230dc062915028e18 100644
+--- a/app/styles/scss/docs/pages/_version-picker.scss
++++ b/app/styles/scss/docs/pages/_version-picker.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ /**
+  * Page: Version Picker
+diff --git a/app/styles/scss/docs/theme/default/_dark.scss b/app/styles/scss/docs/theme/default/_dark.scss
+index 496225a566b40d370bcba52f566820b64d3e2cbf..b007b85b659875c3f25352267fff6f09050be9b1 100644
+--- a/app/styles/scss/docs/theme/default/_dark.scss
++++ b/app/styles/scss/docs/theme/default/_dark.scss
+@@ -1,5 +1,5 @@
+-@use "colors" as *;
+-@use "settings" as *;
++@use "@picocss/pico/scss/colors" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ @mixin theme {
+   // Aside
+diff --git a/app/styles/scss/docs/theme/default/_light.scss b/app/styles/scss/docs/theme/default/_light.scss
+index 1a784bccedbab44b580766be489e208455808ad2..25114f2b1dd7c3b32d513adf8b46b2cb75e847f8 100644
+--- a/app/styles/scss/docs/theme/default/_light.scss
++++ b/app/styles/scss/docs/theme/default/_light.scss
+@@ -1,5 +1,5 @@
+-@use "colors" as *;
+-@use "settings" as *;
++@use "@picocss/pico/scss/colors" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ @mixin theme {
+   // Aside
+diff --git a/app/styles/scss/docs/utilities/_colors.scss b/app/styles/scss/docs/utilities/_colors.scss
+index da7d02c5b194cfd9ad86eab71c9e8073a96fbe5b..241f564d873875e2fc8191dc6137b56e52c7d831 100644
+--- a/app/styles/scss/docs/utilities/_colors.scss
++++ b/app/styles/scss/docs/utilities/_colors.scss
+@@ -2,7 +2,7 @@
+  * Docs: color picker utilities
+  */
+ 
+-@use "pico.colors" with (
++@use "@picocss/pico/scss/pico.colors" with (
+   $palette: (
+     "enable-shades": false,
+   ),
+diff --git a/app/styles/scss/landings/components/_mark.scss b/app/styles/scss/landings/components/_mark.scss
+index 409372c0884dac46989cf2c04089b41134bdb550..fefb31ceaf120eb4ea2689a6d63f19ced4780102 100644
+--- a/app/styles/scss/landings/components/_mark.scss
++++ b/app/styles/scss/landings/components/_mark.scss
+@@ -1,4 +1,4 @@
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ mark {
+   padding: 0;
+diff --git a/app/styles/scss/landings/content/_typography.scss b/app/styles/scss/landings/content/_typography.scss
+index 762f14bb187deb92101aca7e72fe7ac6e58fc807..2d6afd96fad73c8c1bc1c648a019628153263ace 100644
+--- a/app/styles/scss/landings/content/_typography.scss
++++ b/app/styles/scss/landings/content/_typography.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ h1,
+ h2,
+ h3,
+diff --git a/app/styles/scss/landings/examples/_examples.scss b/app/styles/scss/landings/examples/_examples.scss
+index e9d4c08e947c8cf906d6672a4629482390bc110e..775c7204248d3420093114cc41aa5c2eddfa32de 100644
+--- a/app/styles/scss/landings/examples/_examples.scss
++++ b/app/styles/scss/landings/examples/_examples.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ body > main.examples > .examples-list {
+   display: grid;
+diff --git a/app/styles/scss/landings/examples/_hero.scss b/app/styles/scss/landings/examples/_hero.scss
+index 1997707b5659ea8e219521ce824780b107f4d2a1..6d05511882fa52f63161f1f94bcde9ad71fcf5a0 100644
+--- a/app/styles/scss/landings/examples/_hero.scss
++++ b/app/styles/scss/landings/examples/_hero.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ body > main.examples > .examples-hero {
+   margin-top: calc(var(#{$css-var-prefix}homepage-spacing-vertical) / 2);
+diff --git a/app/styles/scss/landings/homepage/_comparison.scss b/app/styles/scss/landings/homepage/_comparison.scss
+index 48bd1d771c3056b93572db1cdd0a5f27650f4705..9cae9afb4c60464443aab32a5ef957c4de42f20d 100644
+--- a/app/styles/scss/landings/homepage/_comparison.scss
++++ b/app/styles/scss/landings/homepage/_comparison.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ body > main.homepage > .comparison {
+   > hgroup {
+diff --git a/app/styles/scss/landings/homepage/_demo.scss b/app/styles/scss/landings/homepage/_demo.scss
+index 7309e2f7161a7be751f8c9e1e6b6b7c0663c14fd..3445eb8123622ef58c026193517163bb0512ca39 100644
+--- a/app/styles/scss/landings/homepage/_demo.scss
++++ b/app/styles/scss/landings/homepage/_demo.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ body > main.homepage > .hero > .demo {
+   --angle: 0deg;
+diff --git a/app/styles/scss/landings/homepage/_features.scss b/app/styles/scss/landings/homepage/_features.scss
+index e8555c2663992111ef30df725ed150e2746131d9..4750ada76fa910374d70c2bafdf6abfaf1d5526b 100644
+--- a/app/styles/scss/landings/homepage/_features.scss
++++ b/app/styles/scss/landings/homepage/_features.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ body > main.homepage > .features {
+   > hgroup {
+diff --git a/app/styles/scss/landings/homepage/_hero.scss b/app/styles/scss/landings/homepage/_hero.scss
+index d9e26c0920a99e86b7df8d35d57cf42ad64be56f..3e11f929bdf68ee394168d8f169e1a4e880746f4 100644
+--- a/app/styles/scss/landings/homepage/_hero.scss
++++ b/app/styles/scss/landings/homepage/_hero.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ body > main.homepage > .hero {
+   display: grid;
+diff --git a/app/styles/scss/landings/homepage/_stats.scss b/app/styles/scss/landings/homepage/_stats.scss
+index ceed2c91267ac2cb943862e4f6b9b8883ae3e8fa..381ca1bfc649ac9acfa53a7e42225b12812b5069 100644
+--- a/app/styles/scss/landings/homepage/_stats.scss
++++ b/app/styles/scss/landings/homepage/_stats.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ body > main.homepage > .stats {
+   margin-top: calc(var(#{$css-var-prefix}homepage-spacing-vertical) * 0.25);
+diff --git a/app/styles/scss/landings/layout/_landmarks.scss b/app/styles/scss/landings/layout/_landmarks.scss
+index 3ac8a215382f6cf794ffdf1c78924f5dff6ead90..23b4eebaddd6d6b75d0a9c166dc9ed692516f090 100644
+--- a/app/styles/scss/landings/layout/_landmarks.scss
++++ b/app/styles/scss/landings/layout/_landmarks.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ #{$semantic-root-element} {
+   overflow: hidden;
+diff --git a/app/styles/scss/landings/theme/default/_dark.scss b/app/styles/scss/landings/theme/default/_dark.scss
+index c268ffe1a4cabd1bad8108aa4f0e7ff122b24c20..1a4acdbdcb0645386a41c06cb54246f89624ede5 100644
+--- a/app/styles/scss/landings/theme/default/_dark.scss
++++ b/app/styles/scss/landings/theme/default/_dark.scss
+@@ -1,5 +1,5 @@
+-@use "colors" as *;
+-@use "settings" as *;
++@use "@picocss/pico/scss/colors" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ @mixin theme {
+   // Demo border gradient
+diff --git a/app/styles/scss/landings/theme/default/_light.scss b/app/styles/scss/landings/theme/default/_light.scss
+index 0a264cbea64cc49c4ee00a116a48d43fb8aa8bb1..aff8b8d3cae073c6832b1c22b322c11ac98cbe6b 100644
+--- a/app/styles/scss/landings/theme/default/_light.scss
++++ b/app/styles/scss/landings/theme/default/_light.scss
+@@ -1,5 +1,5 @@
+-@use "colors" as *;
+-@use "settings" as *;
++@use "@picocss/pico/scss/colors" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ @mixin theme {
+   // Demo border gradient
+diff --git a/app/styles/scss/landings/utils/_index.scss b/app/styles/scss/landings/utils/_index.scss
+index c3d32c2cb3d70f1086c4299608bbc51feb061405..3eb9066fc9143ff1074c05193030151139d535a4 100644
+--- a/app/styles/scss/landings/utils/_index.scss
++++ b/app/styles/scss/landings/utils/_index.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ .fade-in {
+   animation-duration: 1s;
+diff --git a/app/styles/scss/landings.scss b/app/styles/scss/landings.scss
+index 08f38f08d4d8a04bcfafc3a13d1cab74aa08f50d..a548c2da832325f2a741c32f2aa997771f54a186 100644
+--- a/app/styles/scss/landings.scss
++++ b/app/styles/scss/landings.scss
+@@ -1,5 +1,5 @@
+ @use "sass:map";
+-@use "settings" as *;
++@use "@picocss/pico/scss/settings" as *;
+ 
+ // Theme
+ @use "landings/theme/default";
+diff --git a/app/styles/scss/main.scss b/app/styles/scss/main.scss
+index b52fade83c960fbaa1712988bdbf4eec9a91dae4..71f5b36dcff67a05c1076615192f738c652a5d14 100644
+--- a/app/styles/scss/main.scss
++++ b/app/styles/scss/main.scss
+@@ -1,5 +1,5 @@
+ // Pico CSS
+-@use "pico" with (
++@use "@picocss/pico/scss/pico" with (
+   $enable-responsive-spacings: true
+ );
+ 
+diff --git a/app/styles/scss/snippets/default-theme-color-schemes.scss b/app/styles/scss/snippets/default-theme-color-schemes.scss
+index 773a55c6076b892e197b8379f73f2a0f956bb4ba..8992537322e5726e0bd82d9bbd1c37f159e826f7 100644
+--- a/app/styles/scss/snippets/default-theme-color-schemes.scss
++++ b/app/styles/scss/snippets/default-theme-color-schemes.scss
+@@ -1 +1 @@
+-@use "themes/default/schemes";
++@use "@picocss/pico/scss/themes/default/schemes";
+diff --git a/app/styles/scss/snippets/default-theme-styles.scss b/app/styles/scss/snippets/default-theme-styles.scss
+index ed73905fe65a230efef06b8513d10247e1c155c3..c1addaf4937a40630efc2f842bdad86f200f52af 100644
+--- a/app/styles/scss/snippets/default-theme-styles.scss
++++ b/app/styles/scss/snippets/default-theme-styles.scss
+@@ -1 +1 @@
+-@use "themes/default/styles";
++@use "@picocss/pico/scss/themes/default/styles";
+diff --git a/app/styles/scss/utils/_css-vars-from-theme.scss b/app/styles/scss/utils/_css-vars-from-theme.scss
+index 83a0d44507cbb95c85698a9c29828bea05f4ff0f..5566bfe3261d8d504a08667372a5ba1430218cac 100644
+--- a/app/styles/scss/utils/_css-vars-from-theme.scss
++++ b/app/styles/scss/utils/_css-vars-from-theme.scss
+@@ -1,7 +1,7 @@
+ @use "sass:map";
+-@use "settings" as *;
+-@use "colors" as *;
+-@use "../../../../node_modules/@picocss/pico/scss/themes/default/theme-colors" as *;
++@use "@picocss/pico/scss/settings" as *;
++@use "@picocss/pico/scss/colors" as *;
++@use "@picocss/pico/scss/themes/default/theme-colors" as *;
+ 
+ // Generate CSS variables from a color map
+ @mixin generate-main-css-vars($color-map) {
