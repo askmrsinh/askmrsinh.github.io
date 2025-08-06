@@ -9,7 +9,7 @@ overrides:
 
 patchedDependencies:
   '@picocss/picocss.com@0.0.1':
-    hash: 96ccce7f0796db3b7d3bfcf17f3ceb2a6b6361bfb715efdf126bc2a69be53732
+    hash: abe08ae9d24d885e48352fa07cc9017a2d2af7d7553a268ebb3217ae5cf4e132
     path: patches/@picocss__picocss.com@0.0.1.patch
 
 importers:
@@ -45,7 +45,7 @@ importers:
         version: 7.1.0
       '@picocss/picocss.com':
         specifier: github:picocss/picocss.com#c68648909393e0d6a3ab4edd814f95af3a1e8240
-        version: https://codeload.github.com/picocss/picocss.com/tar.gz/c68648909393e0d6a3ab4edd814f95af3a1e8240(patch_hash=96ccce7f0796db3b7d3bfcf17f3ceb2a6b6361bfb715efdf126bc2a69be53732)(@cloudflare/workers-types@4.20250805.0)(@types/react@19.1.9)(typescript@5.9.2)
+        version: https://codeload.github.com/picocss/picocss.com/tar.gz/c68648909393e0d6a3ab4edd814f95af3a1e8240(patch_hash=abe08ae9d24d885e48352fa07cc9017a2d2af7d7553a268ebb3217ae5cf4e132)(@cloudflare/workers-types@4.20250805.0)(@types/react@19.1.9)(typescript@5.9.2)
       eslint:
         specifier: ^9.32.0
         version: 9.32.0
@@ -5187,7 +5187,7 @@ snapshots:
 
   '@picocss/pico@2.1.1': {}
 
-  '@picocss/picocss.com@https://codeload.github.com/picocss/picocss.com/tar.gz/c68648909393e0d6a3ab4edd814f95af3a1e8240(patch_hash=96ccce7f0796db3b7d3bfcf17f3ceb2a6b6361bfb715efdf126bc2a69be53732)(@cloudflare/workers-types@4.20250805.0)(@types/react@19.1.9)(typescript@5.9.2)':
+  '@picocss/picocss.com@https://codeload.github.com/picocss/picocss.com/tar.gz/c68648909393e0d6a3ab4edd814f95af3a1e8240(patch_hash=abe08ae9d24d885e48352fa07cc9017a2d2af7d7553a268ebb3217ae5cf4e132)(@cloudflare/workers-types@4.20250805.0)(@types/react@19.1.9)(typescript@5.9.2)':
     dependencies:
       '@fontsource/figtree': 5.2.8
       '@fontsource/fira-code': 5.2.6

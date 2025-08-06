@@ -41,7 +41,7 @@ index d6c0b259ff460fd53012918a162477cbbdf63ce8..bb433c0c5593d5aa0dcff49e5b161eb4
  .skip-to-content {
    z-index: 999;
 diff --git a/app/styles/scss/commons/content/_code.scss b/app/styles/scss/commons/content/_code.scss
-index ba4094b762251e8f8f8a79b25cd9c23cf3f82bd3..11b088df9c3474857777068775f50af32df3fd1d 100644
+index ba4094b762251e8f8f8a79b25cd9c23cf3f82bd3..052a328a156cde66e3181cf391e8fa12b8ed4c11 100644
 --- a/app/styles/scss/commons/content/_code.scss
 +++ b/app/styles/scss/commons/content/_code.scss
 @@ -1,6 +1,6 @@
@@ -53,6 +53,29 @@ index ba4094b762251e8f8f8a79b25cd9c23cf3f82bd3..11b088df9c3474857777068775f50af3
  
  /**
   * Code
+@@ -100,6 +100,11 @@ article footer.code {
+ 
+ // Standalone code blocks
+ .code:not(article footer.code) {
++  margin-bottom: var(#{$css-var-prefix}block-spacing-vertical);
++  overflow: hidden;
++  border-radius: var(#{$css-var-prefix}border-radius);
++  box-shadow: var(#{$css-var-prefix}card-box-shadow);
++
+   @each $key, $values in $breakpoints {
+     @if $values {
+       @media (min-width: map.get($values, "breakpoint")) {
+@@ -126,10 +131,6 @@ article footer.code {
+       }
+     }
+   }
+-  margin-bottom: var(#{$css-var-prefix}block-spacing-vertical);
+-  overflow: hidden;
+-  border-radius: var(#{$css-var-prefix}border-radius);
+-  box-shadow: var(#{$css-var-prefix}card-box-shadow);
+ 
+   pre {
+     padding: calc(var(#{$css-var-prefix}block-spacing-vertical) * 0.66)
 diff --git a/app/styles/scss/commons/layout/_footer.scss b/app/styles/scss/commons/layout/_footer.scss
 index 3bf360d09c137d61ccd5ebf7c2e67d0048d26bd0..e2c2246361e39cac74b827dd94ef68ea3bf5d6fd 100644
 --- a/app/styles/scss/commons/layout/_footer.scss
@@ -107,29 +130,84 @@ index e0a8d74808db8f507c2363092360689020e8aad8..4f89b913a67f41eef6630f458990b2d9
 +  $directory: "/node_modules/@fontsource/figtree/files"
  );
 diff --git a/app/styles/scss/commons/theme/default/_dark.scss b/app/styles/scss/commons/theme/default/_dark.scss
-index 055e145626de8cd88a0a9c07402a78b782498063..7d320079ec5060cddaf7a399edc9e0f6283ea7a0 100644
+index 055e145626de8cd88a0a9c07402a78b782498063..a45b92ce9b66c3d3822ff7f5fba60d589939f273 100644
 --- a/app/styles/scss/commons/theme/default/_dark.scss
 +++ b/app/styles/scss/commons/theme/default/_dark.scss
-@@ -1,5 +1,5 @@
+@@ -1,9 +1,10 @@
 -@use "colors" as *;
 -@use "settings" as *;
++@use "sass:color";
 +@use "@picocss/pico/scss/colors" as *;
 +@use "@picocss/pico/scss/settings" as *;
  
  @mixin theme {
    // Header
+-  #{$css-var-prefix}header-background: #{rgba(mix($slate-950, $slate-900), 0.9)};
++  #{$css-var-prefix}header-background: #{rgba(color.mix($slate-950, $slate-900), 0.9)};
+   #{$css-var-prefix}header-border-color: rgba($slate-850, 0.9);
+ 
+   // Logo
+@@ -12,7 +13,7 @@
+   #{$css-var-prefix}logo-big-sparkle: #{$amber-200};
+ 
+   // Current version checkmark
+-  #{$css-var-prefix}current-version-checkmark: #{mix($jade-450, $zinc-200)};
++  #{$css-var-prefix}current-version-checkmark: #{color.mix($jade-450, $zinc-200)};
+ 
+   // Card for components
+   #{$css-var-prefix}card-component-outline-width: 2px;
+@@ -20,11 +21,11 @@
+ 
+   // Code
+   #{$css-var-prefix}code-color: #{$zinc-350};
+-  #{$css-var-prefix}code-tag: #{mix($zinc-350, $amber-350, 25%)};
+-  #{$css-var-prefix}code-attr: #{mix($zinc-350, $fuchsia-350, 50%)};
+-  #{$css-var-prefix}code-value: #{mix($zinc-350, $jade-350, 75%)};
++  #{$css-var-prefix}code-tag: #{color.mix($zinc-350, $amber-350, 25%)};
++  #{$css-var-prefix}code-attr: #{color.mix($zinc-350, $fuchsia-350, 50%)};
++  #{$css-var-prefix}code-value: #{color.mix($zinc-350, $jade-350, 75%)};
+   #{$css-var-prefix}code-comment: #{$zinc-500};
+-  #{$css-var-prefix}code-copied: #{mix($jade-450, $zinc-200)};
++  #{$css-var-prefix}code-copied: #{color.mix($jade-450, $zinc-200)};
+ 
+   // Chapter
+   #{$css-var-prefix}chapter-color: var(#{$css-var-prefix}code-tag);
 diff --git a/app/styles/scss/commons/theme/default/_light.scss b/app/styles/scss/commons/theme/default/_light.scss
-index 338cfb690f04d081ec9644bc39ab7901bba35003..3e3e301ba2e48469e2acf5e29e42c791d8335e56 100644
+index 338cfb690f04d081ec9644bc39ab7901bba35003..372271fba0408ae2a93a85d0ef64a84e6c5ff0bb 100644
 --- a/app/styles/scss/commons/theme/default/_light.scss
 +++ b/app/styles/scss/commons/theme/default/_light.scss
-@@ -1,5 +1,5 @@
+@@ -1,5 +1,6 @@
 -@use "colors" as *;
 -@use "settings" as *;
++@use "sass:color";
 +@use "@picocss/pico/scss/colors" as *;
 +@use "@picocss/pico/scss/settings" as *;
  
  @mixin theme {
    // Header
+@@ -12,7 +13,7 @@
+   #{$css-var-prefix}logo-big-sparkle: #{$pumpkin-300};
+ 
+   // Current version checkmark
+-  #{$css-var-prefix}current-version-checkmark: #{mix($jade-450, $zinc-750)};
++  #{$css-var-prefix}current-version-checkmark: #{color.mix($jade-450, $zinc-750)};
+ 
+   // Card for components
+   #{$css-var-prefix}card-component-outline-width: 0;
+@@ -21,10 +22,10 @@
+   // Code
+   #{$css-var-prefix}code-color: #{$zinc-600};
+   #{$css-var-prefix}code-tag: #{$pumpkin-600};
+-  #{$css-var-prefix}code-attr: #{mix($zinc-600, $fuchsia-600, 25%)};
+-  #{$css-var-prefix}code-value: #{mix($zinc-600, $jade-600, 50%)};
++  #{$css-var-prefix}code-attr: #{color.mix($zinc-600, $fuchsia-600, 25%)};
++  #{$css-var-prefix}code-value: #{color.mix($zinc-600, $jade-600, 50%)};
+   #{$css-var-prefix}code-comment: #{$zinc-450};
+-  #{$css-var-prefix}code-copied: #{mix($jade-450, $zinc-750)};
++  #{$css-var-prefix}code-copied: #{color.mix($jade-450, $zinc-750)};
+ 
+   // Chapter
+   #{$css-var-prefix}chapter-color: var(#{$css-var-prefix}code-tag);
 diff --git a/app/styles/scss/commons/theme/default/_styles.scss b/app/styles/scss/commons/theme/default/_styles.scss
 index f7160bc4f7b253ccf4aad8cf0eb9ceff7cd76a4c..520ce62d1ef6a1686fe777175df65b3bb8ca9fe5 100644
 --- a/app/styles/scss/commons/theme/default/_styles.scss
