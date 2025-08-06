@@ -549,29 +549,54 @@ index 8f3788611169262caeb75c54a366192e6a1cebcd..9e21c5ecc6c82ddd429dd07230dc0629
  /**
   * Page: Version Picker
 diff --git a/app/styles/scss/docs/theme/default/_dark.scss b/app/styles/scss/docs/theme/default/_dark.scss
-index 496225a566b40d370bcba52f566820b64d3e2cbf..b007b85b659875c3f25352267fff6f09050be9b1 100644
+index 496225a566b40d370bcba52f566820b64d3e2cbf..f53403d89c06c44f9d65bb9fbb76fa18ff640632 100644
 --- a/app/styles/scss/docs/theme/default/_dark.scss
 +++ b/app/styles/scss/docs/theme/default/_dark.scss
-@@ -1,5 +1,5 @@
+@@ -1,14 +1,15 @@
 -@use "colors" as *;
 -@use "settings" as *;
++@use "sass:color";
 +@use "@picocss/pico/scss/colors" as *;
 +@use "@picocss/pico/scss/settings" as *;
  
  @mixin theme {
    // Aside
+   #{$css-var-prefix}aside-link-current-background-color: #{$slate-850};
+ 
+   // Color coded scale
+-  #{$css-var-prefix}scale-color-1: #{mix($jade-150, $zinc-200)};
+-  #{$css-var-prefix}scale-color-2: #{mix($lime-150, $zinc-200)};
+-  #{$css-var-prefix}scale-color-3: #{mix($amber-250, $zinc-200)};
+-  #{$css-var-prefix}scale-color-4: #{mix($pumpkin-250, $zinc-200)};
+-  #{$css-var-prefix}scale-color-5: #{mix($red-350, $zinc-200)};
++  #{$css-var-prefix}scale-color-1: #{color.mix($jade-150, $zinc-200)};
++  #{$css-var-prefix}scale-color-2: #{color.mix($lime-150, $zinc-200)};
++  #{$css-var-prefix}scale-color-3: #{color.mix($amber-250, $zinc-200)};
++  #{$css-var-prefix}scale-color-4: #{color.mix($pumpkin-250, $zinc-200)};
++  #{$css-var-prefix}scale-color-5: #{color.mix($red-350, $zinc-200)};
+ }
 diff --git a/app/styles/scss/docs/theme/default/_light.scss b/app/styles/scss/docs/theme/default/_light.scss
-index 1a784bccedbab44b580766be489e208455808ad2..25114f2b1dd7c3b32d513adf8b46b2cb75e847f8 100644
+index 1a784bccedbab44b580766be489e208455808ad2..7fee39a27ce9ff4e72eff1a08991b6543dfa07e3 100644
 --- a/app/styles/scss/docs/theme/default/_light.scss
 +++ b/app/styles/scss/docs/theme/default/_light.scss
-@@ -1,5 +1,5 @@
+@@ -1,5 +1,6 @@
 -@use "colors" as *;
 -@use "settings" as *;
++@use "sass:color";
 +@use "@picocss/pico/scss/colors" as *;
 +@use "@picocss/pico/scss/settings" as *;
  
  @mixin theme {
    // Aside
+@@ -18,7 +19,7 @@
+       #{$css-var-prefix}card-background-color: #{$slate-900};
+       #{$css-var-prefix}card-border-color: var(#{$css-var-prefix}card-background-color);
+       #{$css-var-prefix}card-box-shadow: var(#{$css-var-prefix}box-shadow);
+-      #{$css-var-prefix}card-sectioning-background-color: #{mix($slate-900, $slate-850)};
++      #{$css-var-prefix}card-sectioning-background-color: #{color.mix($slate-900, $slate-850)};
+     }
+   }
+ }
 diff --git a/app/styles/scss/docs/utilities/_colors.scss b/app/styles/scss/docs/utilities/_colors.scss
 index da7d02c5b194cfd9ad86eab71c9e8073a96fbe5b..241f564d873875e2fc8191dc6137b56e52c7d831 100644
 --- a/app/styles/scss/docs/utilities/_colors.scss
@@ -712,29 +737,170 @@ index 3ac8a215382f6cf794ffdf1c78924f5dff6ead90..23b4eebaddd6d6b75d0a9c166dc9ed69
  #{$semantic-root-element} {
    overflow: hidden;
 diff --git a/app/styles/scss/landings/theme/default/_dark.scss b/app/styles/scss/landings/theme/default/_dark.scss
-index c268ffe1a4cabd1bad8108aa4f0e7ff122b24c20..1a4acdbdcb0645386a41c06cb54246f89624ede5 100644
+index c268ffe1a4cabd1bad8108aa4f0e7ff122b24c20..425219f455ce59120a91241e8706e34e87208a67 100644
 --- a/app/styles/scss/landings/theme/default/_dark.scss
 +++ b/app/styles/scss/landings/theme/default/_dark.scss
-@@ -1,5 +1,5 @@
+@@ -1,56 +1,57 @@
 -@use "colors" as *;
 -@use "settings" as *;
++@use "sass:color";
 +@use "@picocss/pico/scss/colors" as *;
 +@use "@picocss/pico/scss/settings" as *;
  
  @mixin theme {
    // Demo border gradient
+   #{$css-var-prefix}demo-border-gradient-colors:
+     transparent 33%,
+-    mix($azure-800, $fuchsia-800, 20%),
+-    mix($azure-800, $purple-800, 25%),
+-    mix($azure-800, $violet-800, 30%),
+-    mix($azure-800, $indigo-800, 35%);
++    color.mix($azure-800, $fuchsia-800, 20%),
++    color.mix($azure-800, $purple-800, 25%),
++    color.mix($azure-800, $violet-800, 30%),
++    color.mix($azure-800, $indigo-800, 35%);
+ 
+   // Cards
+   #{$css-var-prefix}card-box-shadow: none;
+-  #{$css-var-prefix}card-background-color: #{mix($slate-950, $slate-900, 25%)};
++  #{$css-var-prefix}card-background-color: #{color.mix($slate-950, $slate-900, 25%)};
+   #{$css-var-prefix}card-component-outline-width: 0.0625rem;
+-  #{$css-var-prefix}card-component-outline-color: #{mix($slate-900, $slate-850)};
++  #{$css-var-prefix}card-component-outline-color: #{color.mix($slate-900, $slate-850)};
+   #{$css-var-prefix}card-border-color: var(#{$css-var-prefix}card-component-outline-color);
+ 
+   // Mark gradient
+   #{$css-var-prefix}mark-gradient: linear-gradient(
+     to right,
+-    mix($azure-300, $fuchsia-300, 20%),
+-    mix($azure-300, $purple-300, 25%),
+-    mix($azure-300, $violet-300, 30%),
+-    mix($azure-300, $indigo-300, 35%)
++    color.mix($azure-300, $fuchsia-300, 20%),
++    color.mix($azure-300, $purple-300, 25%),
++    color.mix($azure-300, $violet-300, 30%),
++    color.mix($azure-300, $indigo-300, 35%)
+   );
+ 
+   // Stats color
+-  #{$css-var-prefix}stats-color: mix($azure-300, $slate-300);
++  #{$css-var-prefix}stats-color: color.mix($azure-300, $slate-300);
+ 
+   // Features icon color
+-  #{$css-var-prefix}features-icon-color: mix($azure-300, $purple-300, 25%);
++  #{$css-var-prefix}features-icon-color: color.mix($azure-300, $purple-300, 25%);
+ 
+   // Comparison gradients
+   #{$css-var-prefix}comparison-gradient-valid: linear-gradient(
+     var(#{$css-var-prefix}comparison-gradient-direction, to bottom),
+-    mix($cyan-500, $slate-500, 25%),
+-    mix($jade-550, $slate-550, 37.5%),
+-    mix($green-600, $slate-600, 50%)
++    color.mix($cyan-500, $slate-500, 25%),
++    color.mix($jade-550, $slate-550, 37.5%),
++    color.mix($green-600, $slate-600, 50%)
+   );
+   #{$css-var-prefix}comparison-gradient-invalid: linear-gradient(
+     var(#{$css-var-prefix}comparison-gradient-direction, to bottom),
+-    mix($pumpkin-500, $slate-500, 50%),
+-    mix($orange-550, $slate-550, 62.5%),
+-    mix($red-600, $slate-600, 75%)
++    color.mix($pumpkin-500, $slate-500, 50%),
++    color.mix($orange-550, $slate-550, 62.5%),
++    color.mix($red-600, $slate-600, 75%)
+   );
+ 
+   // Language badges
+-  $html-color: mix($orange-300, $slate-300, 75%);
+-  $react-color: mix(mix($azure-300, $cyan-300, 25%), $slate-400);
+-  $sass-color: mix($fuchsia-300, $slate-300);
+-  $javascript-color: mix($amber-300, $slate-300);
++  $html-color: color.mix($orange-300, $slate-300, 75%);
++  $react-color: color.mix(color.mix($azure-300, $cyan-300, 25%), $slate-400);
++  $sass-color: color.mix($fuchsia-300, $slate-300);
++  $javascript-color: color.mix($amber-300, $slate-300);
+   $css-color: $blue-300;
+   $background-color-opacity: 0.125;
+   #{$css-var-prefix}badge-html-background-color: rgba($html-color, $background-color-opacity);
 diff --git a/app/styles/scss/landings/theme/default/_light.scss b/app/styles/scss/landings/theme/default/_light.scss
-index 0a264cbea64cc49c4ee00a116a48d43fb8aa8bb1..aff8b8d3cae073c6832b1c22b322c11ac98cbe6b 100644
+index 0a264cbea64cc49c4ee00a116a48d43fb8aa8bb1..27a1684fc22db52ec778739051f780009a51bc2b 100644
 --- a/app/styles/scss/landings/theme/default/_light.scss
 +++ b/app/styles/scss/landings/theme/default/_light.scss
-@@ -1,5 +1,5 @@
+@@ -1,14 +1,15 @@
 -@use "colors" as *;
 -@use "settings" as *;
++@use "sass:color";
 +@use "@picocss/pico/scss/colors" as *;
 +@use "@picocss/pico/scss/settings" as *;
  
  @mixin theme {
    // Demo border gradient
+   #{$css-var-prefix}demo-border-gradient-colors:
+     transparent 33%,
+-    mix($azure-150, $fuchsia-150, 25%),
+-    mix($azure-150, $purple-150, 30%),
+-    mix($azure-150, $violet-150, 35%),
+-    mix($azure-150, $indigo-150, 40%);
++    color.mix($azure-150, $fuchsia-150, 25%),
++    color.mix($azure-150, $purple-150, 30%),
++    color.mix($azure-150, $violet-150, 35%),
++    color.mix($azure-150, $indigo-150, 40%);
+ 
+   // Cards
+   #{$css-var-prefix}card-box-shadow: var(#{$css-var-prefix}box-shadow);
+@@ -18,37 +19,37 @@
+   // Mark gradient
+   #{$css-var-prefix}mark-gradient: linear-gradient(
+     to right,
+-    mix($slate-650, $fuchsia-650, 25%),
+-    mix($slate-650, $purple-650, 30%),
+-    mix($slate-650, $violet-650, 35%),
+-    mix($slate-650, $indigo-650, 40%)
++    color.mix($slate-650, $fuchsia-650, 25%),
++    color.mix($slate-650, $purple-650, 30%),
++    color.mix($slate-650, $violet-650, 35%),
++    color.mix($slate-650, $indigo-650, 40%)
+   );
+ 
+   // Stats color
+-  #{$css-var-prefix}stats-color: mix($azure-600, $slate-600);
++  #{$css-var-prefix}stats-color: color.mix($azure-600, $slate-600);
+ 
+   // Features icon color
+-  #{$css-var-prefix}features-icon-color: mix($slate-550, $purple-550, 30%);
++  #{$css-var-prefix}features-icon-color: color.mix($slate-550, $purple-550, 30%);
+ 
+   // Comparison gradients
+   #{$css-var-prefix}comparison-gradient-valid: linear-gradient(
+     var(#{$css-var-prefix}comparison-gradient-direction, to bottom),
+-    mix($cyan-300, $slate-300, 25%),
+-    mix($jade-350, $slate-350, 37.5%),
+-    mix($green-400, $slate-400, 50%)
++    color.mix($cyan-300, $slate-300, 25%),
++    color.mix($jade-350, $slate-350, 37.5%),
++    color.mix($green-400, $slate-400, 50%)
+   );
+   #{$css-var-prefix}comparison-gradient-invalid: linear-gradient(
+     var(#{$css-var-prefix}comparison-gradient-direction, to bottom),
+-    mix($pumpkin-300, $slate-300, 50%),
+-    mix($orange-350, $slate-350, 62.5%),
+-    mix($red-400, $slate-400, 75%)
++    color.mix($pumpkin-300, $slate-300, 50%),
++    color.mix($orange-350, $slate-350, 62.5%),
++    color.mix($red-400, $slate-400, 75%)
+   );
+ 
+   // Language badges
+   $html-color: $orange-600;
+-  $react-color: mix(mix($azure-600, $cyan-600), $slate-400, 75%);
+-  $sass-color: mix($fuchsia-600, $slate-600, 75%);
+-  $javascript-color: mix($amber-600, $pumpkin-600);
++  $react-color: color.mix(color.mix($azure-600, $cyan-600), $slate-400, 75%);
++  $sass-color: color.mix($fuchsia-600, $slate-600, 75%);
++  $javascript-color: color.mix($amber-600, $pumpkin-600);
+   $css-color: $blue-600;
+   $background-color-opacity: 0.125;
+   #{$css-var-prefix}badge-html-background-color: rgba($html-color, $background-color-opacity);
 diff --git a/app/styles/scss/landings/utils/_index.scss b/app/styles/scss/landings/utils/_index.scss
 index c3d32c2cb3d70f1086c4299608bbc51feb061405..3eb9066fc9143ff1074c05193030151139d535a4 100644
 --- a/app/styles/scss/landings/utils/_index.scss
