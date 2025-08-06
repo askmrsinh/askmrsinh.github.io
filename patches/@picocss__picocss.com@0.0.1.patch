@@ -41,7 +41,7 @@ index d6c0b259ff460fd53012918a162477cbbdf63ce8..bb433c0c5593d5aa0dcff49e5b161eb4
  .skip-to-content {
    z-index: 999;
 diff --git a/app/styles/scss/commons/content/_code.scss b/app/styles/scss/commons/content/_code.scss
-index ba4094b762251e8f8f8a79b25cd9c23cf3f82bd3..052a328a156cde66e3181cf391e8fa12b8ed4c11 100644
+index ba4094b762251e8f8f8a79b25cd9c23cf3f82bd3..05f9eefa0b0ac3a495e9ea108b033de07a07b787 100644
 --- a/app/styles/scss/commons/content/_code.scss
 +++ b/app/styles/scss/commons/content/_code.scss
 @@ -1,6 +1,6 @@
@@ -53,6 +53,15 @@ index ba4094b762251e8f8f8a79b25cd9c23cf3f82bd3..052a328a156cde66e3181cf391e8fa12
  
  /**
   * Code
+@@ -8,7 +8,7 @@
+ 
+ pre,
+ code {
+-  font-family: "Fira Code", var(#{$css-var-prefix}font-family-monospace);
++  font-family: "Fira Code Variable", var(#{$css-var-prefix}font-family-monospace);
+ }
+ 
+ // All code blocks
 @@ -100,6 +100,11 @@ article footer.code {
  
  // Standalone code blocks
@@ -101,33 +110,39 @@ index 8b4f4e06816cb8b29c03bc15d15e1ebd9e4d271a..345b2b081eb038739104f1de6a81034e
  /**
   * Header
 diff --git a/app/styles/scss/commons/theme/_default.scss b/app/styles/scss/commons/theme/_default.scss
-index e0a8d74808db8f507c2363092360689020e8aad8..4f89b913a67f41eef6630f458990b2d922273d79 100644
+index e0a8d74808db8f507c2363092360689020e8aad8..8c6a858dbb762d3a9ee49e3bc49e8ad2bf61b513 100644
 --- a/app/styles/scss/commons/theme/_default.scss
 +++ b/app/styles/scss/commons/theme/_default.scss
-@@ -3,8 +3,8 @@
+@@ -3,8 +3,9 @@
  @use "default/dark";
  
  // Fonts
 -@use "../../../../../node_modules/@fontsource/fira-code/scss/mixins" as FiraCode;
 -@use "../../../../../node_modules/@fontsource/figtree/scss/mixins" as FigTree;
-+@use "/node_modules/@fontsource/fira-code/scss/mixins" as FiraCode;
-+@use "/node_modules/@fontsource/figtree/scss/mixins" as FigTree;
++@use "/node_modules/@fontsource-utils/scss/src/mixins" as fontsource;
++@use "/node_modules/@fontsource-variable/fira-code/scss/metadata" as fira-code;
++@use "/node_modules/@fontsource-variable/figtree/scss/metadata" as figtree;
  
  // Styles
  @use "default/styles";
-@@ -43,11 +43,11 @@
- @include FiraCode.faces(
+@@ -40,14 +41,14 @@
+  * Fonts
+  */
+ 
+-@include FiraCode.faces(
++@include fontsource.faces(
++  $metadata: fira-code.$metadata,
    $weights: 400,
    $styles: all,
 -  $directory: "../../../node_modules/@fontsource/fira-code/files"
-+  $directory: "/node_modules/@fontsource/fira-code/files"
  );
  
- @include FigTree.faces(
+-@include FigTree.faces(
++@include fontsource.faces(
++  $metadata: figtree.$metadata,
    $weights: 700,
    $styles: all,
 -  $directory: "../../../node_modules/@fontsource/figtree/files"
-+  $directory: "/node_modules/@fontsource/figtree/files"
  );
 diff --git a/app/styles/scss/commons/theme/default/_dark.scss b/app/styles/scss/commons/theme/default/_dark.scss
 index 055e145626de8cd88a0a9c07402a78b782498063..a45b92ce9b66c3d3822ff7f5fba60d589939f273 100644
@@ -360,7 +375,7 @@ index 055ea3caee95cf88e2bc724dd027e3b1d085ec77..091a22f70658d6a65cf9d3b8c029efaa
  /**
   * Docs: Documentation Menu
 diff --git a/app/styles/scss/docs/layout/_main-header.scss b/app/styles/scss/docs/layout/_main-header.scss
-index 941331e645d52cd485d789908a776301c08538bd..746bf6a707ef4e528668f8d050ee11b83d68edd1 100644
+index 941331e645d52cd485d789908a776301c08538bd..608044bedfa3f3c0f45cddec404c162c88d04d0f 100644
 --- a/app/styles/scss/docs/layout/_main-header.scss
 +++ b/app/styles/scss/docs/layout/_main-header.scss
 @@ -1,5 +1,5 @@
@@ -370,6 +385,15 @@ index 941331e645d52cd485d789908a776301c08538bd..746bf6a707ef4e528668f8d050ee11b8
  
  /**
   * Docs: Header
+@@ -13,7 +13,7 @@ main {
+ 
+     h1 {
+       margin-bottom: calc(var(#{$css-var-prefix}spacing) * 0.5);
+-      font-family: "Figtree", var(#{$css-var-prefix}font-family);
++      font-family: "Figtree Variable", var(#{$css-var-prefix}font-family);
+ 
+       @media (min-width: map.get(map.get($breakpoints, "sm"), "breakpoint")) {
+         #{$css-var-prefix}font-size: 2.5rem;
 diff --git a/app/styles/scss/docs/layout/_main-table-of-contents.scss b/app/styles/scss/docs/layout/_main-table-of-contents.scss
 index a2849010cb5b86b3399b86b823aa9c6918c77d54..f8e15c6a8de167db246ee79a99c45df23fba3a01 100644
 --- a/app/styles/scss/docs/layout/_main-table-of-contents.scss
@@ -572,16 +596,24 @@ index 409372c0884dac46989cf2c04089b41134bdb550..fefb31ceaf120eb4ea2689a6d63f19ce
  mark {
    padding: 0;
 diff --git a/app/styles/scss/landings/content/_typography.scss b/app/styles/scss/landings/content/_typography.scss
-index 762f14bb187deb92101aca7e72fe7ac6e58fc807..2d6afd96fad73c8c1bc1c648a019628153263ace 100644
+index 762f14bb187deb92101aca7e72fe7ac6e58fc807..1eb0baf5a786a5a9228d1b2ebadf18e18b589ad0 100644
 --- a/app/styles/scss/landings/content/_typography.scss
 +++ b/app/styles/scss/landings/content/_typography.scss
-@@ -1,5 +1,5 @@
+@@ -1,12 +1,12 @@
  @use "sass:map";
 -@use "settings" as *;
 +@use "@picocss/pico/scss/settings" as *;
  h1,
  h2,
  h3,
+ h4,
+ h5,
+ h6 {
+-  font-family: "Figtree", var(#{$css-var-prefix}font-family);
++  font-family: "Figtree Variable", var(#{$css-var-prefix}font-family);
+ }
+ 
+ @media (min-width: map.get(map.get($breakpoints, "sm"), "breakpoint")) {
 diff --git a/app/styles/scss/landings/examples/_examples.scss b/app/styles/scss/landings/examples/_examples.scss
 index e9d4c08e947c8cf906d6672a4629482390bc110e..775c7204248d3420093114cc41aa5c2eddfa32de 100644
 --- a/app/styles/scss/landings/examples/_examples.scss
@@ -649,7 +681,7 @@ index d9e26c0920a99e86b7df8d35d57cf42ad64be56f..3e11f929bdf68ee394168d8f169e1a4e
  body > main.homepage > .hero {
    display: grid;
 diff --git a/app/styles/scss/landings/homepage/_stats.scss b/app/styles/scss/landings/homepage/_stats.scss
-index ceed2c91267ac2cb943862e4f6b9b8883ae3e8fa..381ca1bfc649ac9acfa53a7e42225b12812b5069 100644
+index ceed2c91267ac2cb943862e4f6b9b8883ae3e8fa..4eb5c91c9a01b5cabcdab8bcd163ffc8b755a897 100644
 --- a/app/styles/scss/landings/homepage/_stats.scss
 +++ b/app/styles/scss/landings/homepage/_stats.scss
 @@ -1,5 +1,5 @@
@@ -659,6 +691,15 @@ index ceed2c91267ac2cb943862e4f6b9b8883ae3e8fa..381ca1bfc649ac9acfa53a7e42225b12
  
  body > main.homepage > .stats {
    margin-top: calc(var(#{$css-var-prefix}homepage-spacing-vertical) * 0.25);
+@@ -32,7 +32,7 @@ body > main.homepage > .stats {
+           color: var(#{$css-var-prefix}stats-color);
+           font-size: 1.75rem;
+           line-height: 1.15;
+-          font-family: "Figtree", var(#{$css-var-prefix}font-family);
++          font-family: "Figtree Variable", var(#{$css-var-prefix}font-family);
+         }
+ 
+         &.label {
 diff --git a/app/styles/scss/landings/layout/_landmarks.scss b/app/styles/scss/landings/layout/_landmarks.scss
 index 3ac8a215382f6cf794ffdf1c78924f5dff6ead90..23b4eebaddd6d6b75d0a9c166dc9ed692516f090 100644
 --- a/app/styles/scss/landings/layout/_landmarks.scss
