@@ -726,16 +726,28 @@ index ceed2c91267ac2cb943862e4f6b9b8883ae3e8fa..4eb5c91c9a01b5cabcdab8bcd163ffc8
  
          &.label {
 diff --git a/app/styles/scss/landings/layout/_landmarks.scss b/app/styles/scss/landings/layout/_landmarks.scss
-index 3ac8a215382f6cf794ffdf1c78924f5dff6ead90..23b4eebaddd6d6b75d0a9c166dc9ed692516f090 100644
+index 3ac8a215382f6cf794ffdf1c78924f5dff6ead90..18a64eda1c335482b5766cff3bf1cd8c36a6ed2c 100644
 --- a/app/styles/scss/landings/layout/_landmarks.scss
 +++ b/app/styles/scss/landings/layout/_landmarks.scss
-@@ -1,5 +1,5 @@
+@@ -1,8 +1,9 @@
  @use "sass:map";
 -@use "settings" as *;
 +@use "@picocss/pico/scss/settings" as *;
  
  #{$semantic-root-element} {
    overflow: hidden;
++  padding: 0;
+ 
+   > main {
+     #{$css-var-prefix}homepage-spacing-vertical: calc(var(#{$css-var-prefix}spacing) * 5);
+@@ -38,7 +39,6 @@
+         }
+       }
+     }
+-    padding: 0;
+ 
+     &.is-loading {
+       animation-duration: 1s;
 diff --git a/app/styles/scss/landings/theme/default/_dark.scss b/app/styles/scss/landings/theme/default/_dark.scss
 index c268ffe1a4cabd1bad8108aa4f0e7ff122b24c20..425219f455ce59120a91241e8706e34e87208a67 100644
 --- a/app/styles/scss/landings/theme/default/_dark.scss
