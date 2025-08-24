@@ -2,9 +2,46 @@
 
 ---
 
+<style lang="scss">
+  @use 'sass:map';
+  @use '/node_modules/@picocss/pico/scss/colors' as *;
+  @use '/node_modules/@picocss/pico/scss/settings' as *;
+
+  footer {
+    .container {
+      section {
+        &:last-of-type {
+          margin-block: calc(var(#{$css-var-prefix}spacing) * 2);
+          padding-top: calc(var(#{$css-var-prefix}spacing) * 2);
+          border-top: var(#{$css-var-prefix}border-width) solid
+            var(#{$css-var-prefix}muted-border-color);
+
+          p {
+            margin-bottom: 0;
+            color: var(#{$css-var-prefix}muted-color);
+
+            @media (min-width: map.get(map.get($breakpoints, 'sm'), 'breakpoint')) {
+              display: inline;
+
+              &:not(:first-of-type) {
+                margin-inline-start: calc(var(#{$css-var-prefix}spacing) / 2);
+              }
+            }
+
+            code {
+              padding: 0;
+              background-color: transparent;
+              font-size: 1em;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
 <footer>
   <div class="container">
-    <section></section>
     <section>
       <p>
         Code licensed<!-- -->
@@ -21,7 +58,7 @@
           target="_blank">CC BY-SA 4.0</a
         >.
       </p>
-      <p>Currently <code>#{__COMMIT_HASH__}</code>.</p>
+      <p>Currently <code>static-astro</code>.</p>
     </section>
   </div>
 </footer>

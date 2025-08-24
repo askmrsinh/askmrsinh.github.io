@@ -1,1 +1,31 @@
-@use '@picocss/picocss.com/app/styles/scss/main';
+@use '@picocss/pico/scss/pico' with (
+  $enable-responsive-spacings: true
+);
+
+@use 'sass:map';
+@use '@picocss/pico/scss/settings' as *;
+
+// Theme
+@use 'theme/default';
+
+// Content
+@use 'content/code';
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  #{$css-var-prefix}header-height: calc(4.5rem + var(#{$css-var-prefix}border-width));
+
+  body {
+    display: grid;
+    grid-template-rows: auto minmax(100vh, 1fr) auto;
+    align-items: start;
+  }
+}
+
+@media (max-width: map.get(map.get($breakpoints, 'sm'), 'breakpoint')) {
+  main {
+    max-width: calc(100vw - var(#{$css-var-prefix}block-spacing-horizontal));
+  }
+}

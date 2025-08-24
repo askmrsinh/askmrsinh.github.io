@@ -15,7 +15,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout>
+<Layout isHeaderFixedAboveLg={false}>
   <main class="main container">
     <aside class="aside"></aside>
     <Content />

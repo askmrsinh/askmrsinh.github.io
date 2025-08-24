@@ -1,20 +1,102 @@
 ---
 import Logo from '../components/Logo.astro';
+
+interface Props {
+  isFixedAboveLg?: boolean;
+}
+
+const { isFixedAboveLg = true } = Astro.props;
 ---
 
-<header>
+<style lang="scss">
+  @use 'sass:map';
+  @use '/node_modules/@picocss/pico/scss/colors' as *;
+  @use '/node_modules/@picocss/pico/scss/settings' as *;
+
+  header {
+    z-index: 4;
+    position: relative;
+    padding: 0.5rem 0;
+    border-bottom: var(#{$css-var-prefix}border-width) solid transparent;
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      > a {
+        margin: calc(var(#{$css-var-prefix}spacing) * -0.125)
+          calc(var(#{$css-var-prefix}spacing) * -0.25);
+        padding: calc(var(#{$css-var-prefix}spacing) * 0.125)
+          calc(var(#{$css-var-prefix}spacing) * 0.25);
+        border-radius: var(#{$css-var-prefix}border-radius);
+      }
+
+      nav {
+        svg {
+          display: inline-block;
+          width: auto;
+          height: 1.125rem;
+          transform: translateY(-0.0625rem);
+
+          &.theme-toggle {
+            transform: scale(1.125) translateY(-0.0625rem);
+          }
+        }
+
+        ul {
+          // Hide docs link on mobile
+          li.hide-before-sm {
+            @media (max-width: calc(#{map.get(map.get($breakpoints, "sm"), "breakpoint")} - 1px)) {
+              display: none;
+            }
+          }
+
+          // Icons separator
+          @media (min-width: map.get(map.get($breakpoints, 'sm'), 'breakpoint')) {
+            &.icons {
+              &::before {
+                display: block;
+                height: 1.125rem;
+                margin-inline: var(#{$css-var-prefix}nav-element-spacing-horizontal);
+                border-left: var(#{$css-var-prefix}border-width) solid
+                  var(#{$css-var-prefix}form-element-border-color);
+                content: '';
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Fixed header
+    &.is-fixed-above-lg {
+      @media (min-width: map.get(map.get($breakpoints, 'lg'), 'breakpoint')) {
+        z-index: 2;
+        position: sticky;
+        top: 0;
+        backdrop-filter: blur(1rem);
+        background-color: var(#{$css-var-prefix}header-background);
+        transition:
+          border-top-color 0.4s ease-in-out,
+          box-shadow 0.4s ease-in-out;
+
+        &.is-fixed {
+          border-bottom-color: var(#{$css-var-prefix}header-border-color);
+          box-shadow: var(#{$css-var-prefix}card-box-shadow);
+        }
+      }
+    }
+  }
+</style>
+
+<header class:list={[{ 'is-fixed-above-lg': isFixedAboveLg }]}>
   <div class="container">
     <a aria-label="Homepage" data-discover="true" href="/"><Logo /></a>
     <nav>
       <ul>
         <li>
           <a class="contrast" data-discover="true" href="/blog">Blog</a>
-        </li>
-        <li>
-          <a class="contrast" data-discover="true" href="/projects">Projects</a>
-        </li>
-        <li>
-          <a class="contrast" data-discover="true" href="/tutorials">Tutorials</a>
         </li>
       </ul>
     </nav>

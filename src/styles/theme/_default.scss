@@ -1,0 +1,46 @@
+// Colors schemes
+@use 'default/light';
+@use 'default/dark';
+
+// Fonts
+@use '/node_modules/@fontsource-utils/scss/src/mixins' as fontsource;
+@use '/node_modules/@fontsource-variable/fira-code/scss/metadata' as fira-code;
+@use '/node_modules/@fontsource-variable/figtree/scss/metadata' as figtree;
+
+// Styles
+@use 'default/styles';
+
+/**
+ * Color schemes
+ */
+
+// Light color scheme (Default)
+// Can be forced with data-theme="light"
+[data-theme='light'],
+:root:not([data-theme='dark']),
+:host:not([data-theme='dark']) {
+  @include light.theme;
+}
+
+// Dark color scheme (Auto)
+// Automatically enabled if user has Dark mode enabled
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+  :host:not([data-theme]) {
+    @include dark.theme;
+  }
+}
+
+// Dark color scheme (Forced)
+// Enabled if forced with data-theme="dark"
+[data-theme='dark'] {
+  @include dark.theme;
+}
+
+/**
+ * Fonts
+ */
+
+@include fontsource.faces($metadata: fira-code.$metadata, $weights: 400, $styles: all);
+
+@include fontsource.faces($metadata: figtree.$metadata, $weights: 700, $styles: all);
