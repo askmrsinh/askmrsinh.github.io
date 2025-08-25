@@ -1,0 +1,59 @@
+---
+interface Props {
+  items?: Array<{
+    label: string;
+    href: string;
+    current?: boolean;
+  }>;
+  customLabels?: Record<string, string>;
+}
+
+const { items, customLabels = {} } = Astro.props;
+
+// Generate breadcrumb from URL if no items provided
+function generateBreadcrumb(url: URL): Array<{ label: string; href: string; current?: boolean }> {
+  const pathSegments = url.pathname.split('/').filter(Boolean);
+  const breadcrumb: Props['items'] = [{ label: 'Home', href: '/' }];
+
+  let currentPath = '';
+
+  for (let i = 0; i < pathSegments.length; i++) {
+    currentPath += `/${pathSegments[i]}`;
+    const segment = pathSegments[i];
+
+    // Use custom label if provided, otherwise format the segment
+    const label =
+      customLabels[segment] ??
+      customLabels[currentPath] ??
+      segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ');
+
+    const isLast = i === pathSegments.length - 1;
+
+    breadcrumb.push({
+      label,
+      href: currentPath,
+      current: isLast
+    });
+  }
+
+  return breadcrumb;
+}
+
+const breadcrumbItems = items ?? generateBreadcrumb(Astro.url);
+---
+
+<nav aria-label="breadcrumb">
+  <ul>
+    {
+      breadcrumbItems.map((item, index) => (
+        <li>
+          {item.current ? (
+            <span aria-current="page">{item.label}</span>
+          ) : (
+            <a href={item.href}>{item.label}</a>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>

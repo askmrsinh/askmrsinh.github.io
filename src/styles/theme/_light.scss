@@ -1,7 +1,9 @@
-@use '@picocss/pico/scss/colors' as *;
-@use '@picocss/pico/scss/settings' as *;
+@use 'sass:color';
+@use '../base/settings' as *;
 
 @mixin theme {
+  #{$css-var-prefix}box-shadow: none;
+
   // Header
   #{$css-var-prefix}header-background: #{rgba($white, 0.8)};
   #{$css-var-prefix}header-border-color: transparent;
@@ -19,15 +21,15 @@
   #{$css-var-prefix}card-component-outline-color: transparent;
 
   // Code
-  //#{$css-var-prefix}code-color: #{$zinc-600};
-  //#{$css-var-prefix}code-tag: #{$pumpkin-600};
-  //#{$css-var-prefix}code-attr: #{mix($zinc-600, $fuchsia-600, 25%)};
-  //#{$css-var-prefix}code-value: #{mix($zinc-600, $jade-600, 50%)};
-  //#{$css-var-prefix}code-comment: #{$zinc-450};
-  #{$css-var-prefix}code-copied: #{mix($jade-450, $zinc-750)};
+  #{$css-var-prefix}code-color: #{$zinc-600};
+  #{$css-var-prefix}code-tag: #{$pumpkin-600};
+  #{$css-var-prefix}code-attr: #{color.mix($zinc-600, $fuchsia-600, 25%)};
+  #{$css-var-prefix}code-value: #{color.mix($zinc-600, $jade-600, 50%)};
+  #{$css-var-prefix}code-comment: #{$zinc-450};
+  #{$css-var-prefix}code-copied: #{color.mix($jade-450, $zinc-750)};
 
   // Chapter
-  #{$css-var-prefix}chapter-color: var(#{$css-var-prefix}code-tag);
+  // #{$css-var-prefix}chapter-color: var(#{$css-var-prefix}muted-color);
 
   // Footer
   //footer {

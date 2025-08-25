@@ -4,8 +4,7 @@
 
 <style lang="scss">
   @use 'sass:map';
-  @use '/node_modules/@picocss/pico/scss/colors' as *;
-  @use '/node_modules/@picocss/pico/scss/settings' as *;
+  @use '../styles/base/variables' as *;
 
   footer {
     .container {
@@ -44,21 +43,8 @@
   <div class="container">
     <section>
       <p>
-        Code licensed<!-- -->
-        <a
-          rel="noopener noreferrer"
-          class="secondary"
-          href="https://github.com/picocss/pico/blob/master/LICENSE.md"
-          target="_blank">MIT</a
-        >, docs<!-- -->
-        <a
-          rel="noopener noreferrer"
-          class="secondary"
-          href="https://github.com/picocss/picocss.com/blob/main/LICENSE.md"
-          target="_blank">CC BY-SA 4.0</a
-        >.
+        Copyright &copy; {new Date().getFullYear()} Ashesh Singh. All rights reserved.
       </p>
-      <p>Currently <code>static-astro</code>.</p>
     </section>
   </div>
 </footer>

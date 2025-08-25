@@ -1,0 +1,92 @@
+@use '../base/variables' as *;
+
+small {
+  #{$css-var-prefix}font-size: var(#{$css-var-prefix}font-size-sm) !important;
+  font-size: var(#{$css-var-prefix}font-size-sm);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.font-size-sm {
+  #{$css-var-prefix}font-size: var(#{$css-var-prefix}font-size-sm) !important;
+  font-size: var(#{$css-var-prefix}font-size-sm);
+}
+
+.font-weight-100 {
+  font-weight: 100;
+}
+
+.font-weight-200 {
+  font-weight: 200;
+}
+
+.font-weight-300 {
+  font-weight: 300;
+}
+
+.font-weight-400 {
+  font-weight: 400; /* Normal */
+}
+
+.font-weight-500 {
+  font-weight: 500;
+}
+
+.font-weight-600 {
+  font-weight: 600;
+}
+
+.font-weight-700 {
+  font-weight: 700; /* Bold */
+}
+
+.font-weight-800 {
+  font-weight: 800;
+}
+
+.font-weight-900 {
+  font-weight: 900;
+}
+
+.font-weight-1000 {
+  font-weight: 1000;
+}
+
+.letter-spacing-xs {
+  letter-spacing: -0.05em !important;
+}
+.letter-spacing-sm {
+  letter-spacing: 0.0625em !important;
+}
+
+.letter-spacing-md {
+  letter-spacing: 0.075em !important;
+}
+
+.letter-spacing-lg {
+  letter-spacing: 0.1em !important;
+}
+
+.letter-spacing-xl {
+  letter-spacing: 0.125em !important;
+}
+
+.letter-spacing-xxl {
+  letter-spacing: 0.15em !important;
+}
+
+.text-decoration-none:not(a),
+a.text-decoration-none:not(:hover) {
+  #{$css-var-prefix}text-decoration: none !important;
+  text-decoration: var(#{$css-var-prefix}text-decoration);
+}

@@ -1,0 +1,49 @@
+---
+import IconThemeToggle from '../../assets/icon-contrast.svg';
+
+interface Props {
+  fill?: string;
+  stroke?: string;
+  class?: string | string[];
+}
+
+const { fill, stroke, class: className, ...rest } = Astro.props;
+---
+
+<a href="#" aria-label="Toogle light/dark mode" class="contrast">
+  <IconThemeToggle class:list={['icon-theme-toggle', className]} {...rest} />
+</a>
+
+<style>
+  svg.icon-theme-toggle {
+    --theme-toggle-duration: 400ms;
+    cursor: pointer;
+    transition: transform var(--theme-toggle-duration) ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  [data-theme='dark'] .theme-toggle {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  function setupThemeToggle() {
+    const theme = localStorage.getItem('theme') ?? 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+
+    const toggle = document.querySelector('.icon-theme-toggle');
+
+    toggle?.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const theme = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupThemeToggle);
+</script>

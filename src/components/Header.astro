@@ -1,17 +1,18 @@
 ---
 import Logo from '../components/Logo.astro';
+import ThemeToggle from '../components/common/ThemeToggle.astro';
+import IconRss from '../assets/icon-rss.svg';
 
 interface Props {
   isFixedAboveLg?: boolean;
 }
 
-const { isFixedAboveLg = true } = Astro.props;
+const { isFixedAboveLg = false } = Astro.props;
 ---
 
 <style lang="scss">
   @use 'sass:map';
-  @use '/node_modules/@picocss/pico/scss/colors' as *;
-  @use '/node_modules/@picocss/pico/scss/settings' as *;
+  @use '../styles/base/variables' as *;
 
   header {
     z-index: 4;
@@ -55,7 +56,7 @@ const { isFixedAboveLg = true } = Astro.props;
           // Icons separator
           @media (min-width: map.get(map.get($breakpoints, 'sm'), 'breakpoint')) {
             &.icons {
-              &::before {
+              &::after {
                 display: block;
                 height: 1.125rem;
                 margin-inline: var(#{$css-var-prefix}nav-element-spacing-horizontal);
@@ -94,7 +95,18 @@ const { isFixedAboveLg = true } = Astro.props;
   <div class="container">
     <a aria-label="Homepage" data-discover="true" href="/"><Logo /></a>
     <nav>
-      <ul>
+      <ul class="icons font-weight-800">
+        <li>
+          <ThemeToggle stroke-width={3} />
+        </li>
+        <li>
+          <a class="contrast" data-discover="true" href="/rss.xml"><IconRss stroke-width={3} /></a>
+        </li>
+      </ul>
+      <ul class="font-weight-800">
+        <li>
+          <a class="contrast" data-discover="true" href="/about">About</a>
+        </li>
         <li>
           <a class="contrast" data-discover="true" href="/blog">Blog</a>
         </li>

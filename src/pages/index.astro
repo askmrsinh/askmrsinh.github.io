@@ -1,18 +1,119 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import '../styles/landing.scss';
+
+import Article from '../components/common/Article.astro';
+import IconBrandLinkedin from '../assets/icon-brand-linkedin.svg';
+import IconBrandX from '../assets/icon-brand-x.svg';
+import IconBrandGithub from '../assets/icon-brand-github.svg';
+import IconBrandStackoverflow from '../assets/icon-brand-stackoverflow.svg';
+const posts = await getCollection('blog');
+const featuredPosts = posts
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .slice(0, 5);
 ---
 
-<Layout>
-  <main class="main homepage container">
+<style lang="scss">
+  @use 'sass:map';
+  @use '../styles/base/variables' as *;
+
+  main > section > header {
+    margin-bottom: calc(var(#{$css-var-prefix}spacing) * 2.5);
+  }
+
+  .socials.grid {
+    grid-template-columns: repeat(2, 48px);
+  }
+</style>
+
+<Layout isHeaderFixedAboveLg={true}>
+  <main class="main landing container">
     <section class="hero">
-      <div class="hook">
-        <h1><mark>Hello World!</mark></h1>
-        <p class="secondary">
-          Greetings and thank you for visiting my personal website, which is still under
-          construction. This space will highlight my journey, projects, and ideas.
-        </p>
-      </div>
+      <header>
+        <hgroup>
+          <h1 class="font-weight-800">
+            <a href="/about" class="contrast text-decoration-none uppercase">Hi! I'm Ashesh 👋</a>
+          </h1>
+          <p class="color font-weight-500 letter-spacing-md">
+            Thanks for stopping by my small corner of the internet!
+          </p>
+        </hgroup>
+      </header>
+
+      <p>
+        Over the past decade, I've helped teams and customers get more out of software through roles
+        in engineering, sales, and support.
+      </p>
+      <p>
+        I built this site to share some of what I've learned — thoughts, ideas, and projects you
+        might find useful.
+      </p>
+
+      <nav>
+        <ul>
+          <li>
+            <a
+              href="https://www.linkedin.com/in/askmrsinh/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contrast"
+              title="Ashesh on LinkedIn"><IconBrandLinkedin width={32} height={32} /></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://x.com/askmrsinh"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contrast"
+              title="Ashesh on X"><IconBrandX width={32} height={32} /></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://github.com/askmrsinh/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contrast"
+              title="Ashesh on GitHub"><IconBrandGithub width={32} height={32} /></a
+            >
+          </li>
+          <li>
+            <a
+              href="https://stackoverflow.com/users/2534513"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="contrast"
+              title="Ashesh on Stack Overflow"><IconBrandStackoverflow width={32} height={32} /></a
+            >
+          </li>
+        </ul>
+      </nav>
+    </section>
+
+    <section class="blogs">
+      <header>
+        <hgroup>
+          <h1 class="font-weight-800">
+            <a href="/blog" class="contrast text-decoration-none uppercase">Featured Writings</a>
+          </h1>
+          <p class="color font-weight-500 letter-spacing-md">
+            Some notes on the messy reality of solving problems with software.
+          </p>
+        </hgroup>
+      </header>
+      {
+        featuredPosts.map((post) => (
+          <Article
+            href={`/blog/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            publishedAt={post.data.publishedAt}
+            tags={post.data.tags}
+          />
+        ))
+      }
     </section>
   </main>
 </Layout>

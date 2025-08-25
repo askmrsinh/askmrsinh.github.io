@@ -1,0 +1,5 @@
+@use '/node_modules/@fontsource-utils/scss/src/mixins' as fontsource;
+@use '/node_modules/@fontsource-variable/recursive/scss/metadata' as recursive;
+
+// Default Recursive font
+@include fontsource.faces($metadata: recursive.$metadata, $weights: all, $axes: all);

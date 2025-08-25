@@ -3,6 +3,8 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import '../../styles/blog.scss';
 
+import Article from '../../components/common/Article.astro';
+
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
@@ -12,12 +14,20 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
-<Layout isHeaderFixedAboveLg={false}>
-  <main class="main container">
-    <aside class="aside"></aside>
-    <Content />
+<Layout>
+  <main class="main blog container">
+    <Article
+      title={post.data.title}
+      description={post.data.description}
+      href={`/blog/${post.id}`}
+      publishedAt={post.data.publishedAt}
+      tags={post.data.tags}
+      preview={false}
+    >
+      <Content slot="content" />
+    </Article>
   </main>
 </Layout>

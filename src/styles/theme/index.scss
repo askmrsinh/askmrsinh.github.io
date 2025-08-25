@@ -1,0 +1,75 @@
+@use 'light';
+@use 'dark';
+
+@use '../base/variables' as *;
+
+/**
+ * Color schemes
+ */
+
+/* Light color scheme (Default) */
+/* Can be forced with data-theme="light" */
+[data-theme='light'],
+:root:not([data-theme='dark']),
+:host:not([data-theme='dark']) {
+  @include light.theme;
+}
+
+/* Dark color scheme (Auto) */
+/* Automatically enabled if user has Dark mode enabled */
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]),
+  :host:not([data-theme]) {
+    @include dark.theme;
+  }
+}
+
+/* Dark color scheme (Forced) */
+/* Enabled if forced with data-theme="dark" */
+[data-theme='dark'] {
+  @include dark.theme;
+}
+
+/**
+ * Custom styles
+ */
+
+a,
+a:hover {
+  #{$css-var-prefix}text-decoration: underline wavy !important;
+}
+
+.container {
+  padding-right: var(#{$css-var-prefix}spacing) !important;
+  padding-left: var(#{$css-var-prefix}spacing) !important;
+}
+
+.color-muted:not(a),
+a.color-muted:not(:hover) {
+  #{$css-var-prefix}color: var(#{$css-var-prefix}muted-color) !important;
+  color: var(#{$css-var-prefix}color);
+}
+
+.color-contrast:not(a),
+a.color-contrast:not(:hover) {
+  #{$css-var-prefix}color: var(#{$css-var-prefix}contrast) !important;
+  color: var(#{$css-var-prefix}color);
+}
+
+.color:not(a),
+a.color:not(:hover) {
+  #{$css-var-prefix}color: var(#{$css-var-prefix}color) !important;
+  color: var(#{$css-var-prefix}color);
+}
+
+.color-primary:not(a),
+a.color-primary:not(:hover) {
+  #{$css-var-prefix}color: var(#{$css-var-prefix}primary) !important;
+  color: var(#{$css-var-prefix}color);
+}
+
+.color-secondary:not(a),
+a.color-secondary:not(:hover) {
+  #{$css-var-prefix}color: var(#{$css-var-prefix}secondary) !important;
+  color: var(#{$css-var-prefix}color);
+}

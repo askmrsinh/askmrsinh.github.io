@@ -1,0 +1,18 @@
+@use './variables' as variables;
+
+@use '@picocss/pico/scss/settings' with (
+  $css-var-prefix: variables.$css-var-prefix,
+  $theme-color: variables.$theme-color,
+  $enable-responsive-typography: false,
+  $enable-responsive-spacings: false,
+  $breakpoints: variables.$breakpoints
+);
+
+@use '@picocss/pico/scss/colors/utilities' with (
+  $css-var-prefix: variables.$css-var-prefix,
+  $css-class-prefix: variables.$css-class-prefix
+);
+
+@forward '@picocss/pico/scss/settings';
+@forward '@picocss/pico/scss/colors/utilities' hide $css-var-prefix;
+@forward '@picocss/pico/scss/colors';

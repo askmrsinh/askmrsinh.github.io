@@ -1,0 +1,162 @@
+---
+import IconArrowUpRight from '../../assets/icon-arrow-up-right.svg';
+
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  publishedAt: Date;
+  tags: [string, ...string[]];
+  preview?: boolean;
+}
+
+const { title, description, href, publishedAt, tags = [], preview = true } = Astro.props;
+const HeadingTag = preview ? 'h2' : 'h1';
+---
+
+<style lang="scss">
+  @use 'sass:map';
+  @use '../../styles/base/variables' as *;
+
+  article {
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-row-gap: calc(var(#{$css-var-prefix}grid-row-gap) * 3);
+
+    > header {
+      #{$css-var-prefix}grid-row-gap: var(#{$css-var-prefix}typography-spacing-vertical) !important;
+
+      grid-column: 1/-1;
+      display: grid;
+      grid-row-gap: var(#{$css-var-prefix}grid-row-gap);
+      grid-template-columns: subgrid;
+    }
+
+    > header > hgroup {
+      #{$css-var-prefix}typography-spacing-vertical: 0 !important;
+      #{$css-var-prefix}grid-row-gap: var(#{$css-var-prefix}grid-row-gap) !important;
+
+      grid-column: 1/-1;
+      display: grid;
+      grid-row-gap: var(#{$css-var-prefix}grid-row-gap);
+      grid-template-columns: subgrid;
+      align-items: baseline;
+    }
+
+    > header > .a {
+      grid-column: span 3;
+      display: inline-block;
+      justify-self: start;
+    }
+    > header > .b:not(:first-child) {
+      grid-column: span 13;
+      display: inline-block;
+      justify-self: end;
+    }
+    > header > .b:first-child {
+      grid-column: 1/-1;
+      display: inline-block;
+      justify-self: start;
+    }
+    > header > hgroup > .c {
+      grid-column: span 15;
+    }
+    > header > hgroup > .d {
+      grid-column: span 1;
+      justify-self: end;
+    }
+    > header > hgroup > .e {
+      grid-column: span 16;
+    }
+
+    > header > .f {
+      grid-column: 1/-1;
+    }
+
+    > section,
+    > footer {
+      grid-column: 1/-1;
+    }
+  }
+
+  article:not(.preview) > header > hgroup > .c {
+    grid-column: 1/-1;
+  }
+
+  article.preview > header {
+    grid-row-gap: 0;
+  }
+</style>
+
+<article class:list={['grid', { preview: preview }]}>
+  <header class="grid">
+    <!-- {
+      category && (
+        <a
+          href={`/categories/${slug(category}`}
+          class="a color-muted text-decoration-none font-size-sm font-weight-500 letter-spacing-md uppercase"
+        >
+          Internal
+        </a>
+      )
+    } -->
+    <time
+      datetime={publishedAt.toISOString()}
+      class="b color-muted font-size-sm font-weight-500 letter-spacing-md uppercase"
+      >{
+        publishedAt.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: '2-digit'
+        })
+      }</time
+    >
+    <hgroup class="grid">
+      <HeadingTag class:list={['c', { 'font-weight-800': !preview }]}>
+        {
+          preview && (
+            <a href={href} class="contrast text-decoration-none">
+              {title}
+            </a>
+          )
+        }
+        {!preview && title}
+      </HeadingTag>
+      {
+        preview && (
+          <a class="d contrast" target="_blank" href={href}>
+            <IconArrowUpRight />
+          </a>
+        )
+      }
+      <p class:list={['e', preview ? 'color' : 'color-secondary']}>
+        {description}
+      </p>
+    </hgroup>
+    <div class="f font-size-sm tags">
+      {
+        tags.map((tag, index) => (
+          <>
+            {/* prettier-ignore */}
+            <a href={`/tags/${tag}`} class="tag color-muted text-decoration-none font-weight-100">#{tag}</a>
+            {index < tags.length - 1 && ' '}
+          </>
+        ))
+      }
+    </div>
+  </header>
+  {
+    Astro.slots.has('content') && (
+      <section>
+        <slot name="content" />
+      </section>
+    )
+  }
+  {
+    Astro.slots.has('footer') && (
+      <footer>
+        <slot name="footer" />
+      </footer>
+    )
+  }
+</article>

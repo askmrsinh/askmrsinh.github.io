@@ -1,0 +1,105 @@
+@use 'sass:map';
+@use 'sass:color';
+
+@use 'base' as *;
+
+@use '@picocss/pico/scss/pico';
+
+@use 'theme';
+@use 'content';
+
+:root,
+:host {
+  #{$css-var-prefix}font-family-sans-serif:
+    'Recursive Variable', system-ui, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, Helvetica,
+    Arial, 'Helvetica Neue', sans-serif, var(#{$css-var-prefix}font-family-emoji);
+  #{$css-var-prefix}font-family-monospace:
+    'Recursive Variable', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace, var(#{$css-var-prefix}font-family-emoji);
+  #{$css-var-prefix}font-size: $font-size;
+  #{$css-var-prefix}font-size-sm: $font-size-sm;
+}
+
+html {
+  #{$css-var-prefix}header-height: calc(4.5rem + var(#{$css-var-prefix}border-width));
+
+  transition:
+    background var(#{$css-var-prefix}transition),
+    color var(#{$css-var-prefix}transition);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+#{$semantic-root-element} {
+  display: grid;
+  grid-template-columns:
+    $offset-width min(
+      calc(map.get(map.get($breakpoints, 'lg'), 'viewport') - $offset-width),
+      100vw - $offset-width
+    )
+    1fr;
+  grid-template-rows: auto minmax(calc(100vh - var(#{$css-var-prefix}header-height)), 1fr) auto;
+}
+
+#{$semantic-root-element} > main {
+  max-width: 100vw;
+  font-variation-settings:
+    'CASL' 0,
+    'CRSV' 1,
+    'MONO' 0;
+}
+
+#{$semantic-root-element} > header,
+#{$semantic-root-element} > footer {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+#{$semantic-root-element} > header > div,
+#{$semantic-root-element} > main,
+#{$semantic-root-element} > footer > div {
+  grid-column: 2;
+}
+
+@media (max-width: map.get(map.get($breakpoints, 'lg'), 'viewport')) {
+  #{$semantic-root-element} {
+    grid-template-columns: 1fr;
+  }
+
+  #{$semantic-root-element} > header,
+  #{$semantic-root-element} > footer {
+    grid-template-columns: 1fr;
+  }
+
+  #{$semantic-root-element} > header > div,
+  #{$semantic-root-element} > main,
+  #{$semantic-root-element} > footer > div {
+    grid-column: 1;
+  }
+}
+
+#{$parent-selector} :where(header) {
+  ~ :is(h1, h2, h3, h4, h5, h6) {
+    margin-top: var(#{$css-var-prefix}typography-spacing-top);
+  }
+}
+
+#{$semantic-root-element} > main {
+  header > hgroup > h1,
+  header > hgroup > h2 {
+    line-height: 1.5;
+  }
+}
+
+#{$semantic-root-element} > main > section + section {
+  margin-top: calc(var(#{$css-var-prefix}spacing) * 5);
+}
+
+#{$semantic-root-element} > main > header + * {
+  margin-top: calc(var(#{$css-var-prefix}spacing) * 2.5);
+}
+
+#{$semantic-root-element} > main > section > article + article {
+  margin-top: calc(var(#{$css-var-prefix}spacing) * 1.75);
+}

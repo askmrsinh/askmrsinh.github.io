@@ -1,0 +1,28 @@
+@use '../base/variables' as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header > hgroup {
+  font-variation-settings:
+    'MONO' 0,
+    'CASL' 0,
+    'CRSV' 0;
+}
+
+header > hgroup > p {
+  font-variation-settings:
+    'MONO' 0,
+    'CASL' 0.5,
+    'CRSV' 0.5;
+}
+
+// header > hgroup a:not(:hover) {
+//   #{$css-var-prefix}color: unset !important;
+//   #{$css-var-prefix}text-decoration: unset !important;
+//   color: var(#{$css-var-prefix}color);
+//   text-decoration: var(#{$css-var-prefix}text-decoration);
+// }

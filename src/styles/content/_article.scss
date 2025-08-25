@@ -1,0 +1,11 @@
+article:not(.card) {
+  background: unset;
+  box-shadow: unset;
+  border: unset;
+  padding: unset;
+
+  > header,
+  > footer {
+    all: unset;
+  }
+}

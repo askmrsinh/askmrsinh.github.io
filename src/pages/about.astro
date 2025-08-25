@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import '../styles/landing.scss';
+import Breadcrumb from '../components/common/Breadcrumb.astro';
+
+const posts = await getCollection('blog');
+const featuredPosts = posts
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .slice(0, 5);
+---
+
+<Layout isHeaderFixedAboveLg={true}>
+  <main class="main about container">
+    <header>
+      <Breadcrumb />
+      <hgroup>
+        <h1 class="font-weight-800 letter-spacing-lg uppercase">About</h1>
+        <p class="color font-weight-500 letter-spacing-md">
+          Who I am, what I've learned, and why I do it.
+        </p>
+      </hgroup>
+    </header>
+    <section></section>
+  </main>
+</Layout>

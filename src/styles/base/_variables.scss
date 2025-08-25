@@ -1,0 +1,33 @@
+$css-var-prefix: '--';
+$css-class-prefix: '';
+$theme-color: 'azure';
+
+// Custom application variables
+$offset-width: 200px;
+
+// Breakpoint configuration
+$breakpoints: (
+  sm: (
+    breakpoint: 576px,
+    viewport: 100vw
+  ),
+  md: (
+    breakpoint: 768px,
+    viewport: 100vw
+  ),
+  lg: (
+    breakpoint: 1024px,
+    viewport: 992px
+  ),
+  xl: (
+    breakpoint: 1200px,
+    viewport: 992px
+  ),
+  xxl: (
+    breakpoint: 1400px,
+    viewport: 992px
+  )
+);
+
+$font-size: clamp(1rem, 0.8rem + 0.625vw, 1.1875rem);
+$font-size-sm: 0.8em;

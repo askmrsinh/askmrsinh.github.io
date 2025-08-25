@@ -1,68 +1,20 @@
-@use "sass:map";
-@use "@picocss/pico/scss/colors" as *;
-@use "@picocss/pico/scss/settings" as *;
-
-/**
- * Code
- */
+@use '../base/variables' as *;
 
 pre,
-code {
-  font-family: "Fira Code", var(#{$css-var-prefix}font-family-monospace);
+code,
+kbd,
+samp,
+.expressive-code {
+  font-variation-settings:
+    'CASL' 0,
+    'CRSV' 0,
+    'MONO' 1;
 }
 
 .expressive-code {
-  --ec-brdRad: var(#{$css-var-prefix}border-radius);
-  --ec-brdWd: var(#{$css-var-prefix}border-width);
-  --ec-brdCol: var(#{$css-var-prefix}muted-border-color);
-  --ec-codeFontFml: "Fira Code", var(#{$css-var-prefix}font-family-monospace);
-  --ec-codeFontSize: 0.875em;
-  --ec-codeFontWg: var(#{$css-var-prefix}font-weight);
-  --ec-codeLineHt: var(#{$css-var-prefix}line-height);
-  --ec-codeBg: var(#{$css-var-prefix}code-background-color);
-  --ec-codeFg: var(#{$css-var-prefix}code-color);
-  --ec-uiFontFml: var(#{$css-var-prefix}font-family-sans-serif);
-  --ec-uiFontSize: var(#{$css-var-prefix}font-size);
-  --ec-uiFontWg: var(#{$css-var-prefix}font-weight);
-  --ec-uiLineHt: var(#{$css-var-prefix}line-height);
-  --ec-frm-tooltipSuccessBg: var(#{$css-var-prefix}code-copied);
-  --ec-frm-tooltipSuccessFg: var(#{$css-var-prefix}background-color);
+  margin-bottom: var(#{$css-var-prefix}typography-spacing-vertical);
 
-  @each $key, $values in $breakpoints {
-    @if $values {
-      @media (min-width: map.get($values, "breakpoint")) {
-        $multiplier: 1;
-
-        @if $key == "sm" {
-          $multiplier: 1.25;
-        } @else if $key == "md" {
-          $multiplier: 1.5;
-        } @else if $key == "lg" {
-          $multiplier: 1.75;
-        } @else if $key == "xl" {
-          $multiplier: 2;
-        } @else if $key == "xxl" {
-          $multiplier: 2.5;
-        }
-
-        #{$css-var-prefix}block-spacing-horizontal: calc(
-          var(#{$css-var-prefix}spacing) * $multiplier
-        );
-        #{$css-var-prefix}block-spacing-vertical: calc(
-          var(#{$css-var-prefix}spacing) * $multiplier
-        );
-      }
-    }
+  details summary::after {
+    display: none;
   }
-
-  margin-bottom: var(#{$css-var-prefix}block-spacing-vertical);
-}
-
-.expressive-code + .expressive-code {
-  margin-top: var(--pico-typography-spacing-vertical)
-}
-
-/* Reduce bottom margin on pre followed by another pre */
-.expressive-code:not(:last-child):has(+ .expressive-code) {
-  margin-bottom: var(--pico-typography-spacing-vertical)
 }

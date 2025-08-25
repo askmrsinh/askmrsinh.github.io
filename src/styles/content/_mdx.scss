@@ -1,0 +1,9 @@
+ul.contains-task-list {
+  padding-inline-start: unset;
+  > li.task-list-item {
+    list-style-type: none;
+    > input[type='checkbox']:disabled {
+      opacity: unset;
+    }
+  }
+}
